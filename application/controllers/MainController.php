@@ -3,18 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MainController extends CI_Controller {
 
+	// public function index()
+	// {
+	// 	$data['title'] = "Mulai Sekarang";
+
+	// 	$this->load->view('partials/header', $data);
+	// 	$this->load->view('index');
+	// 	$this->load->view('partials/footer');
+	// }
+
 	public function index()
 	{
-		$data['title'] = "Mulai Sekarang";
-
-		$this->load->view('partials/header', $data);
-		$this->load->view('index');
-		$this->load->view('partials/footer');
-	}
-
-	public function menu()
-	{
-		$data['title'] = "Menu";
+		$data['title'] = "Beranda";
 
 		$this->load->view('partials/header', $data);
 		$this->load->view('index2');
@@ -23,7 +23,7 @@ class MainController extends CI_Controller {
 
 	public function beranda()
 	{
-		$data['title'] = "Beranda";
+		$data['title'] = "Home";
 
 		$this->load->view('partials/header', $data);
 		$this->load->view('partials/header-home');

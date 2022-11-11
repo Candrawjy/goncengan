@@ -17,10 +17,11 @@
     <link href="<?=base_url('')?>assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="<?=base_url('')?>assets/plugins/sweetalert/sweetalert2.min.css" rel="stylesheet"/>
     <link href="<?=base_url('')?>assets/css/style.css" rel="stylesheet"/>
     <link href="<?=base_url('')?>assets/css/dark-theme.css" rel="stylesheet"/>
   </head>
-  <body <?php if($this->uri->segment(1) == "menu"){echo 'class="splash-bg-2"';}?>>
+  <body <?php if($this->uri->segment(1) == ""){echo 'class="splash-bg-2"';}?>>
     <div class="loader-wrapper">
       <div class="d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle">
         <div class="spinner-border text-white" role="status">

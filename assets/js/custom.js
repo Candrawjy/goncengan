@@ -179,3 +179,22 @@ $(document).on('click', '#submit-contact', function(e) {
 		icon: 'success',
 	})
 });
+
+$(document).on('click', '#to-driver', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda tidak dapat kembali sampai Anda membatalkan!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
