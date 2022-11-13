@@ -47,7 +47,7 @@
         </div>
 
         <div class="mb-3">
-          <a class="profile-item" href="<?=site_url('')?>">
+          <a class="profile-item" href="<?=site_url('logout')?>" id="btn-logout">
             <div class="card rounded-3">
               <div class="card-body py-2">
                 <div class="d-flex align-items-center gap-3 fs-6">
