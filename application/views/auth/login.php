@@ -11,18 +11,20 @@
         <div class="login-body">
           <h5 class="fw-bold">Selamat Datang Kembali</h5>
           <p class="mb-0">Masuk ke akun Anda untuk menikmati layanan Goncengan</p>
-          <form class="mt-4">
+          <form class="mt-4" autocomplete="off" action="<?=site_url('login')?>" method="post">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email">
+              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email" name="email" value="<?=set_value('email')?>">
               <label for="floatingInputEmail">Email</label>
+              <small class="text-danger"><?=form_error('email')?></small>
             </div>
 
             <div class="input-group mb-3" id="show_hide_password">
               <div class="form-floating flex-grow-1">
-                <input type="password" class="form-control rounded-3 rounded-end-0 border-end-0" id="floatingInputPassword" placeholder="Masukkan Password">
+                <input type="password" class="form-control rounded-3 rounded-end-0 border-end-0" id="floatingInputPassword" placeholder="Masukkan Password" name="password">
                 <label for="floatingInputPassword">Password</label>
               </div>
               <span class="input-group-text bg-transparent rounded-start-0 rounded-3 eye"><i class="bi bi-eye-slash"></i></span>
+              <small class="text-danger"><?=form_error('password')?></small>
             </div>
 
             <div class="d-flex align-items-center justify-content-between mb-3">
@@ -33,7 +35,7 @@
               <div class=""><a href="javascript:;" class="forgot-link">Forgot Password?</a></div>
             </div>
             <div class="mb-0 d-grid">
-              <a href="<?=site_url('beranda')?>" class="btn btn-warning btn-ecomm rounded-3">Masuk</a>
+              <button type="submit" class="btn btn-warning btn-ecomm rounded-3">Masuk</button>
             </div>
             <div class="separator my-4">
               <div class="line"></div>

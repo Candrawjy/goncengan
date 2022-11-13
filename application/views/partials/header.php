@@ -21,7 +21,9 @@
     <link href="<?=base_url('')?>assets/css/style.css" rel="stylesheet"/>
     <link href="<?=base_url('')?>assets/css/dark-theme.css" rel="stylesheet"/>
   </head>
-  <body <?php if($this->uri->segment(1) == ""){echo 'class="splash-bg-2"';}?>>
+  <body <?php if($this->uri->segment(1) == "menu"){echo 'class="splash-bg-2"';}?>>
+    <div id="flash" data-flash="<?=$this->session->flashdata('success')?>"></div>
+    <div id="flash-error" data-flash="<?=$this->session->flashdata('error')?>"></div>
     <div class="loader-wrapper">
       <div class="d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle">
         <div class="spinner-border text-white" role="status">

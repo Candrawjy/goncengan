@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MainController extends CI_Controller {
 
+	public function __construct()
+    {
+        parent::__construct();
+
+        if ($this->session->userdata('email') == NULL) {
+            redirect('/');
+        }
+    }
+
 	// public function index()
 	// {
 	// 	$data['title'] = "Mulai Sekarang";
@@ -12,14 +21,14 @@ class MainController extends CI_Controller {
 	// 	$this->load->view('partials/footer');
 	// }
 
-	public function index()
-	{
-		$data['title'] = "Beranda";
+	// public function menu()
+	// {
+	// 	$data['title'] = "Beranda";
 
-		$this->load->view('partials/header', $data);
-		$this->load->view('index2');
-		$this->load->view('partials/footer');
-	}
+	// 	$this->load->view('partials/header', $data);
+	// 	$this->load->view('index2');
+	// 	$this->load->view('partials/footer');
+	// }
 
 	public function beranda()
 	{

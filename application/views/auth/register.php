@@ -11,44 +11,69 @@
         <div class="login-body">
           <h5 class="fw-bold">Daftar Sekarang</h5>
           <p class="mb-0">Daftar sekarang untuk menikmati layanan Goncengan</p>
-          <form class="mt-4">
+          <form class="mt-4" autocomplete="off" action="<?=site_url('register')?>" method="post">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-3" id="floatingInputNama" placeholder="Masukkan Nama">
+              <input type="text" class="form-control rounded-3" id="floatingInputNama" placeholder="Masukkan Nama" name="nama" value="<?=set_value('nama')?>">
               <label for="floatingInputNama">Nama Lengkap</label>
+              <small class="text-danger"><?=form_error('nama')?></small>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-3" id="floatingInputNim" placeholder="Masukkan NIM">
+              <input type="text" class="form-control rounded-3" id="floatingInputNim" placeholder="Masukkan NIM" name="nim" value="<?=set_value('nim')?>">
               <label for="floatingInputNim">Nomor Induk Mahasiswa</label>
+              <small class="text-danger"><?=form_error('nim')?></small>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="number" class="form-control rounded-3" id="floatingInputNo" placeholder="Masukkan No Hp">
-              <label for="floatingInputNo">No. Handphone</label>
+              <input type="number" class="form-control rounded-3" id="floatingInputNo" placeholder="Masukkan No. Whatsapp" name="no_wa" value="<?=set_value('no_wa')?>">
+              <label for="floatingInputNo">No. Whatsapp (contoh : 62852xxx)</label>
+              <small class="text-danger"><?=form_error('no_wa')?></small>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email">
+              <select class="form-control rounded-3" name="jenis_kelamin" value="<?=set_value('jenis_kelamin')?>">
+                <option value="">-- Pilih Jenis Kelamin --</option>
+                <option value="laki-laki">Laki-Laki</option>
+                <option value="perempuan">Perempuan</option>
+              </select>
+              <label for="floatingInputNo">Jenis Kelamin</label>
+              <small class="text-danger"><?=form_error('jenis_kelamin')?></small>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email" name="email" value="<?=set_value('email')?>">
               <label for="floatingInputEmail">Email</label>
+              <small class="text-danger"><?=form_error('email')?></small>
             </div>
 
             <div class="input-group mb-3" id="show_hide_password">
               <div class="form-floating flex-grow-1">
-                <input type="password" class="form-control rounded-3 rounded-end-0 border-end-0" id="floatingInputPassword" placeholder="Masukkan Password">
+                <input type="password" class="form-control rounded-3 rounded-end-0 border-end-0" id="floatingInputPassword" placeholder="Masukkan Password" name="password" value="<?=set_value('password')?>">
                 <label for="floatingInputPassword">Password</label>
               </div>
               <span class="input-group-text bg-transparent rounded-start-0 rounded-3 eye"><i class="bi bi-eye-slash"></i></span>
+              <small class="text-danger"><?=form_error('password')?></small>
+            </div>
+
+            <div class="input-group mb-3" id="show_hide_password">
+              <div class="form-floating flex-grow-1">
+                <input type="password" class="form-control rounded-3 rounded-end-0 border-end-0" id="floatingInputKonPassword" placeholder="Masukkan Password" name="passconf" value="<?=set_value('passconf')?>">
+                <label for="floatingInputKonPassword">Konfirmasi Password</label>
+              </div>
+              <span class="input-group-text bg-transparent rounded-start-0 rounded-3 eye"><i class="bi bi-eye-slash"></i></span>
+              <small class="text-danger"><?=form_error('passconf')?></small>
             </div>
 
             <div class="d-flex align-items-center justify-content-between mb-3">
               <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">Saya setuju dengan <b>Syarat dan Ketentuan</b></label>
+                <input type="checkbox" class="form-check-input" id="flexCheckDefault" name="check">
+                <label class="form-check-label" for="flexCheckDefault">Saya setuju dengan <a href="<?=site_url('term')?>" class="text-dark"><b>Syarat dan Ketentuan</b></a></label><br>
+                <small class="text-danger"><?=form_error('check')?></small>
               </div>
             </div>
 
             <div class="mb-0 d-grid">
-              <a href="<?=site_url('login')?>" class="btn btn-warning btn-ecomm rounded-3">Daftar</a>
+              <button type="submit" class="btn btn-warning btn-ecomm rounded-3">Daftar</button>
             </div>
 
             <div class="separator my-4">

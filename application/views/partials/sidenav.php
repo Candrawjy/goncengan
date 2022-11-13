@@ -44,14 +44,23 @@
                     Kontak Kami
                   </a>
                 </li>
+                <li>
+                  <a href="<?=site_url('logout')?>" id="btn-logout">
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    Keluar
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
           <div class="offcanvas-footer border-top p-3">
+            Versi 01.25.22
+          </div>
+          <!-- <div class="offcanvas-footer border-top p-3">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" role="switch" id="DarkMode" onchange="toggleTheme()">
               <label class="form-check-label" for="DarkMode">Dark Mode</label>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
