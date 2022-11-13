@@ -6,7 +6,7 @@
                 <img src="https://via.placeholder.com/110X110" width="45" class="rounded-3 p-1 bg-white" alt=""/>
               </div>
               <div class="details">
-                <h6 class="mb-0 text-white">Hi! Candra</h6>
+                <h6 class="mb-0 text-white">Hi! <?=ucfirst($this->session->userdata('nama'))?></h6>
               </div>
             </div>
             <div data-bs-dismiss="offcanvas"><i class="bi bi-x-lg fs-5 text-white"></i></div>
