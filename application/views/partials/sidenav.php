@@ -33,15 +33,21 @@
                   </ul>
                 </li>
                 <li>
-                  <a href="javascript:;">
-                    <i class="bi bi-emoji-smile me-2"></i>
+                  <a href="<?=site_url('tentang-kami')?>">
+                    <i class="bi bi-info-circle me-2"></i>
                     Tentang Kami
                   </a>
                 </li>
                 <li>
                   <a href="<?=site_url('kontak')?>">
-                    <i class="bi bi-headphones me-2"></i>
+                    <i class="bi bi-telephone me-2"></i>
                     Kontak Kami
+                  </a>
+                </li>
+                <li>
+                  <a href="<?=site_url('faq')?>">
+                    <i class="bi bi-question-circle me-2"></i>
+                    FAQ
                   </a>
                 </li>
                 <li>

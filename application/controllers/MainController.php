@@ -69,7 +69,7 @@ class MainController extends CI_Controller {
 
 	public function kontak()
 	{
-		$data['title'] = "Kontak";
+		$data['title'] = "Kontak Kami";
 
 		$this->load->view('partials/header', $data);
 		$this->load->view('partials/header-main');
@@ -100,4 +100,28 @@ class MainController extends CI_Controller {
         	echo "<script> history.go(-1); </script>";
         }
     }
+
+    public function tentang_kami()
+	{
+		$data['title'] = "Tentang Kami";
+
+		$this->load->view('partials/header', $data);
+		$this->load->view('partials/header-main');
+		$this->load->view('tentang-kami');
+		$this->load->view('partials/footer-main');
+		$this->load->view('partials/sidenav');
+		$this->load->view('partials/footer');
+	}
+
+	public function faq()
+	{
+		$data['title'] = "FAQ";
+
+		$this->load->view('partials/header', $data);
+		$this->load->view('partials/header-main');
+		$this->load->view('faq');
+		$this->load->view('partials/footer-main');
+		$this->load->view('partials/sidenav');
+		$this->load->view('partials/footer');
+	}
 }
