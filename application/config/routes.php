@@ -67,6 +67,7 @@ $route['beranda'] = 'MainController/beranda';
 $route['notifikasi'] = 'MainController/notifikasi';
 $route['profil'] = 'MainController/profil';
 $route['kontak'] = 'MainController/kontak';
+$route['kirim-pesan'] = 'MainController/kirimpesan';
 
 // $route['berita'] = 'MainController/berita';
 $route['bantuan'] = 'MainController/bantuan';

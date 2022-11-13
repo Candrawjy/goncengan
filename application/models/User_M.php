@@ -20,6 +20,7 @@ class User_M extends CI_Model {
 
 	public function add($post)
 	{
+		$params['id'] = substr(md5(rand()),0,5);
 		$params['nama'] = $post['nama'];
 		$params['nim'] = $post['nim'];
 		$params['no_wa'] = $post['no_wa'];

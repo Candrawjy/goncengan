@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2022 at 07:51 PM
+-- Generation Time: Nov 13, 2022 at 08:16 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -24,15 +24,36 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pesan`
+--
+
+CREATE TABLE `pesan` (
+  `id` varchar(100) NOT NULL,
+  `id_user` varchar(100) NOT NULL,
+  `pesan` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pesan`
+--
+
+INSERT INTO `pesan` (`id`, `id_user`, `pesan`, `created_at`) VALUES
+('0cfe9', '1', 'bagus', '2022-11-14 02:14:04');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` varchar(100) NOT NULL,
   `nama` text NOT NULL,
   `nim` text NOT NULL,
   `no_wa` text NOT NULL,
   `jenis_kelamin` text NOT NULL,
+  `profile_picture` text DEFAULT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
   `is_active` int(11) NOT NULL DEFAULT 0,
@@ -44,9 +65,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `nim`, `no_wa`, `jenis_kelamin`, `email`, `password`, `is_active`, `role`, `created_at`) VALUES
-(1, 'Candra Wijaya', 'J0303201030', '62895377562532', 'laki-laki', 'candraw71@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '', '2022-11-14 01:22:40'),
-(2, 'CANDRA WIJAYA', 'J0303201030', '62895377562532', 'laki-laki', 'canderaw8@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, NULL, '2022-11-14 01:24:09');
+INSERT INTO `user` (`id`, `nama`, `nim`, `no_wa`, `jenis_kelamin`, `profile_picture`, `email`, `password`, `is_active`, `role`, `created_at`) VALUES
+('1', 'Candra Wijaya', 'J0303201030', '62895377562532', 'laki-laki', NULL, 'candraw71@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, NULL, '2022-11-14 01:22:40'),
+('2', 'CANDRA WIJAYA', 'J0303201030', '62895377562532', 'laki-laki', NULL, 'canderaw8@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, NULL, '2022-11-14 01:24:09');
 
 -- --------------------------------------------------------
 
@@ -62,17 +83,14 @@ CREATE TABLE `user_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user_token`
---
-
-INSERT INTO `user_token` (`id`, `email`, `token`, `created_at`) VALUES
-(1, 'candraw71@gmail.com', 'oemY6EhaQmGHSOD9iNlrPoW3yx4k5Vi8Xy4k1FqXn5g=', '1668363653'),
-(2, 'candraw71@gmail.com', 'wwyptfVhA8sCR8r8MXbaCqLEQDJM+XnJwmQTxf6MAcU=', '1668363760'),
-(3, 'canderaw8@gmail.com', 'ROo70b0HxIV9GxUAbXAv11KtanVC+iLPM8VLiScpfzY=', '1668363849');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `pesan`
+--
+ALTER TABLE `pesan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -89,12 +107,6 @@ ALTER TABLE `user_token`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_token`
