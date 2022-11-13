@@ -68,11 +68,8 @@ $route['notifikasi'] = 'MainController/notifikasi';
 $route['profil'] = 'MainController/profil';
 $route['kontak'] = 'MainController/kontak';
 $route['kirim-pesan'] = 'MainController/kirimpesan';
-
-// $route['berita'] = 'MainController/berita';
-$route['bantuan'] = 'MainController/bantuan';
-$route['kontak-kami'] = 'MainController/kontak_kami';
 $route['tentang-kami'] = 'MainController/tentang_kami';
+$route['faq'] = 'MainController/faq';
 
 // Driver Route
 $route['driver'] = 'DriverController/home_driver';
