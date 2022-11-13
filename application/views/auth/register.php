@@ -76,7 +76,7 @@
               <button type="submit" class="btn btn-warning btn-ecomm rounded-3">Daftar</button>
             </div>
 
-            <div class="separator my-4">
+            <!-- <div class="separator my-4">
               <div class="line"></div>
               <p class="mb-0 fw-bold px-3">Atau</p>
               <div class="line"></div>
@@ -85,7 +85,7 @@
               <a href="javascript:;" class="bg-pinterest">
                 <i class="bi bi-google"></i>
               </a>
-            </div>
+            </div> -->
           </form>
         </div>
       </div>
