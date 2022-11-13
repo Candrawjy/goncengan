@@ -10,6 +10,7 @@ class MainController extends CI_Controller {
         if ($this->session->userdata('email') == NULL) {
             redirect('/');
         }
+        $this->load->model('Main_M');
     }
 
 	// public function index()
@@ -77,4 +78,26 @@ class MainController extends CI_Controller {
 		$this->load->view('partials/sidenav');
 		$this->load->view('partials/footer');
 	}
+
+	public function kirimpesan()
+    {
+    	$id = substr(md5(rand()),0,5);
+        $id_user = $this->session->userdata('id');
+        $pesan = $this->input->post('pesan');
+
+        $data = array(
+        	'id' => $id,
+            'id_user'      => $id_user,
+            'pesan'  	=> $pesan,
+        );
+ 
+        $this->Main_M->kirimpesan($data, 'pesan');
+        if ($this->db->affected_rows() > 0) {
+        	$this->session->set_flashdata('success', 'Pesan Anda berhasil dikirim');
+        	echo "<script> history.go(-1); </script>";
+        } else {
+        	$this->session->set_flashdata('success', 'Gagal untuk mengirim pesan, mohon coba lagi.');
+        	echo "<script> history.go(-1); </script>";
+        }
+    }
 }

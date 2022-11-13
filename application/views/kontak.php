@@ -1,28 +1,28 @@
       <div class="page-content">
         <div class="card rounded-3 mb-3">
           <div class="card-body">
-            <form>
+            <form autocomplete="off" action="<?=site_url('kirim-pesan')?>" method="post">
               <div class="form-body">
                 <h5 class="mb-0 fw-bold">Sampaikan Pesan</h5>
                 <div class="my-3 border-bottom"></div>
                 <div class="mb-3">
-                  <label class="form-label">Enter Name</label>
-                  <input type="text" class="form-control rounded-3">
+                  <label class="form-label">Nama Anda</label>
+                  <input type="text" class="form-control rounded-3" value="<?=ucfirst($this->session->userdata('nama'))?>" readonly>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Enter Email</label>
-                  <input type="text" class="form-control rounded-3">
+                  <label class="form-label">Email</label>
+                  <input type="text" class="form-control rounded-3" value="<?=ucfirst($this->session->userdata('email'))?>" readonly>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Phone Number</label>
-                  <input type="text" class="form-control rounded-3">
+                  <label class="form-label">No. Handphone</label>
+                  <input type="text" class="form-control rounded-3" value="<?=$this->session->userdata('no_wa')?>" readonly>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Message</label>
-                  <textarea class="form-control rounded-3" rows="4" cols="4"></textarea>
+                  <label class="form-label">Pesan yang ingin disampaikan</label>
+                  <textarea class="form-control rounded-3" rows="4" cols="4" name="pesan" required></textarea>
                 </div>
                 <div class="mb-3 col-lg-12">
-                  <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-warning flex-fill"><i class="bi bi-send me-2"></i>Kirim</a>
+                  <button type="submit" class="btn btn-ecomm rounded-3 btn-warning flex-fill"><i class="bi bi-send me-2"></i>Kirim</button>
                 </div>
               </div>
             </form>

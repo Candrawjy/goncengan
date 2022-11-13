@@ -1,7 +1,7 @@
       <div class="page-content">
         <div class="profile-img mb-3 border p-3 text-center rounded-3 bg-light">
           <img src="https://via.placeholder.com/110X110" width="90" height="90" class="rounded-circle" alt="">
-          <h6 class="mb-0 fw-bold mt-3">Candra Wijaya</h6>
+          <h6 class="mb-0 fw-bold mt-3"><?=ucfirst($this->session->userdata('nama'))?></h6>
         </div>
 
         <div class="mb-3">
