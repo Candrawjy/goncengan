@@ -33,14 +33,18 @@ class MainController extends CI_Controller {
 
 	public function beranda()
 	{
-		$data['title'] = "Home";
+		if ($this->session->userdata('role') == "driver") {
+        	redirect('driver');
+        } else {
+			$data['title'] = "Beranda";
 
-		$this->load->view('partials/header', $data);
-		$this->load->view('partials/header-home');
-		$this->load->view('home');
-		$this->load->view('partials/footer-main');
-		$this->load->view('partials/sidenav');
-		$this->load->view('partials/footer');
+			$this->load->view('partials/header', $data);
+			$this->load->view('partials/header-home');
+			$this->load->view('home');
+			$this->load->view('partials/footer-main');
+			$this->load->view('partials/sidenav');
+			$this->load->view('partials/footer');
+		}
 	}
 
 	public function notifikasi()
@@ -124,4 +128,5 @@ class MainController extends CI_Controller {
 		$this->load->view('partials/sidenav');
 		$this->load->view('partials/footer');
 	}
+
 }

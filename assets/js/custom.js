@@ -198,3 +198,88 @@ $(document).on('click', '#to-driver', function(e) {
 		}
 	})
 });
+
+$(document).on('click', '#out-driver', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan keluar dari mode driver!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#to-angle', function(e) {
+	e.preventDefault();
+	var form = $(this).parents('form');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda tidak akan mendapatkan uang. Namun, Anda dapat membantu teman Anda!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			form.submit();
+		}
+	})
+});
+
+$(document).on('click', '#to-bisnis', function(e) {
+	e.preventDefault();
+	var form = $(this).parents('form');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan mendapatkan bayaran atas tumpangan yang Anda tawarkan!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			form.submit();
+		}
+	})
+});
+
+
+function validation()
+{
+	var form = document.getElementById("form");
+	var email = document.getElementById("floatingInputEmail").value;
+	var text = document.getElementById("text");
+	var pattern = /^[^ ]+@[apps]+.[ipb.ac.id]/;
+
+	if (email.match(pattern))
+	{
+		form.classList.add("valid");
+		form.classList.remove("invalid");
+		text.innerHTML = "";
+	}
+	else
+	{
+		form.classList.remove("valid");
+		form.classList.add("invalid");
+		text.innerHTML = "Mohon masukkan email IPB aktif.";
+	}
+	if (email == "")
+	{
+		form.classList.remove("valid");
+		form.classList.remove("invalid");
+		text.innerHTML = "";
+	}
+}

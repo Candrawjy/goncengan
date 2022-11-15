@@ -24,7 +24,24 @@
 
         <div class="py-2"></div>
 
-       <!--  <div class="features-section">
+        <div class="features-section">
+          <div class="row row-cols-md-12 g-3">
+            <div class="col d-flex">
+              <div class="card rounded-3 w-100">
+                <div class="card-body">
+                  <div class="alert alert-warning text-center" role="alert">
+                    <b>Belum ada penawaran yang Anda buat!</b>
+                  </div>
+                  <div class="icon-wrapper text-center">
+                    <a href="<?=site_url('pasang-iklan')?>" class="btn btn-ecomm rounded-3 btn-primary flex-fill">Buat Sekarang</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="features-section">
           <h6 class="my-3 text-center fw-bold">Penawaran Kamu Sudah Kami Sampaikan!</h6>
           <div class="row row-cols-md-12 g-3">
             <div class="col d-flex">
@@ -34,7 +51,7 @@
                     <b>Menunggu Penumpang</b>
                   </div>
                   <div class="icon-wrapper text-center">
-                    <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Batalkan Penawaran</a>
+                    <a href="<?=site_url('keluar-driver-mode')?>" id="out-driver" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Batalkan Penawaran</a>
                   </div>
                 </div>
               </div>
@@ -42,7 +59,7 @@
           </div>
         </div> -->
 
-         <div class="features-section">
+        <!-- <div class="features-section">
           <div class="row row-cols-md-12 g-3">
             <div class="col d-flex">
               <div class="card rounded-3 w-100">
@@ -58,5 +75,6 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+
       </div>

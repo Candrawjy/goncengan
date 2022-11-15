@@ -50,4 +50,27 @@ class User_M extends CI_Model {
 		$this->db->where('id_user', $post['id_user']);
 		$this->db->update('user', $params);
 	}
+
+	public function updateProfil($where, $data)
+    {
+        // $params['nama'] = $post['nama'];
+        // $params['no_wa'] = $post['no_wa'];
+        // $params['jenis_kelamin'] = $post['jenis_kelamin'];
+
+        // if (!empty($post['email'])) {
+        //     $params['email'] = $post['email'];
+        // }
+        // if (!empty($post['nim'])) {
+        //     $params['nim'] = $post['nim'];
+        // }
+        // if (!empty($post['password'])) {
+        //     $params['password'] = md5($post['password']);
+        // }
+
+        // $this->db->where('id', $post['id']);
+        // $this->db->update('user', $params);
+
+        $this->db->where('id', $where);
+		$this->db->update('user', $data);
+    }
 }

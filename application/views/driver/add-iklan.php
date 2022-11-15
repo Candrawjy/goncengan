@@ -1,7 +1,7 @@
       <div class="page-content">
-        <div class="card rounded-3 mb-3">
-          <div class="card-body">
-            <form>
+        <form autocomplete="off" action="<?=site_url('pasang-iklan')?>" method="post">
+          <div class="card rounded-3 mb-3">
+            <div class="card-body">
               <div class="form-body">
                 <h6 class="mb-0 fw-bold">Masukkan Data Berikut</h6>
                 <div class="my-3 border-bottom"></div>
@@ -12,42 +12,48 @@
                     <option value="sekolah-bisnis">Sekolah Bisnis IPB University</option>
                     <option value="sekolah-vokasi">Sekolah Vokasi IPB University</option>
                   </select>
+                  <small class="text-danger"><?=form_error('lokasi_awal')?></small>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Lokasi Tujuan</label>
-                  <textarea class="form-control rounded-3" rows="4" cols="4"></textarea>
+                  <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_tujuan"></textarea>
+                  <small class="text-danger"><?=form_error('lokasi_tujuan')?></small>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Waktu Berangkat</label>
-                  <input type="time" class="form-control rounded-3">
+                  <input type="time" class="form-control rounded-3" name="waktu_berangkat">
+                  <small class="text-danger"><?=form_error('waktu_berangkat')?></small>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Waktu Pulang</label>
-                  <input type="time" class="form-control rounded-3">
+                  <input type="time" class="form-control rounded-3" name="waktu_pulang">
+                  <small class="text-danger"><?=form_error('waktu_pulang')?></small>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Gender Penumpang</label>
-                  <select name="lokasi_awal" class="form-control rounded-3">
+                  <select class="form-control rounded-3" name="gender">
                     <option value="">-- Pilih Gender Penumpang --</option>
                     <option value="laki-laki">Laki-Laki</option>
                     <option value="perempuan">Perempuan</option>
                     <option value="keduanya">Keduanya</option>
                   </select>
+                  <small class="text-danger"><?=form_error('gender')?></small>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
 
-        <div class="card rounded-3">
-          <div class="card-body">
-            <div class="col-lg-12">
-              <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Batal Menjadi Driver</a>
-            </div>
-            <div class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center gap-3">
-              <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-warning flex-fill">Angel Driver</a>
-              <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-primary flex-fill">Business Driver</a>
+          <div class="card rounded-3">
+            <div class="card-body">
+              <div class="row">
+                <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-success flex-fill" onclick="history.back()">Kembali</a>
+              </div>
+              <div class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center gap-3">
+                <input type="submit" class="btn btn-ecomm rounded-3 btn-warning flex-fill"  value="Angel Driver" name="type">
+                <!-- <button type="submit" class="btn btn-ecomm rounded-3 btn-warning flex-fill" id="to-angle" value="Angel" name="type">Angel Driver</button> -->
+                <input type="submit" class="btn btn-ecomm rounded-3 btn-primary flex-fill" id="to-bisnis" value="Business Driver" name="submit">
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
