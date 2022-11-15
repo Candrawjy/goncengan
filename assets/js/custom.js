@@ -1,17 +1,9 @@
-var win = navigator.platform.indexOf('Win') > -1;
-if (win && document.querySelector('#sidenav-scrollbar')) {
-    var options = {
-    	damping: '0.5'
-    }
-    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-}
-
 // Select2 & Datatable Script
 $(document).ready(function() {
 	// Select2
-    $(".select2").select2({
-        width: '100%'
-    });
+	$(".select2").select2({
+		width: '100%'
+	});
     // DataTable
     $('#datatable').DataTable();
 });
@@ -52,8 +44,8 @@ $(document).on('click', '#btn-hapus', function(e) {
 	})
 });
 $(document).on('click', '#form1', function(e){
-    e.preventDefault();
-    var form = $(this).parents('form');
+	e.preventDefault();
+	var form = $(this).parents('form');
 
 	Swal.fire({
 		title: 'Apakah Anda yakin?',
@@ -88,8 +80,8 @@ $(document).on('click', '#btn-logout', function(e) {
 	})
 });
 $(document).on('click', '#baca-pesan', function(e){
-    e.preventDefault();
-    var form = $(this).parents('form');
+	e.preventDefault();
+	var form = $(this).parents('form');
 
 	Swal.fire({
 		title: 'Apakah Anda yakin?',
@@ -219,6 +211,7 @@ $(document).on('click', '#out-driver', function(e) {
 });
 
 $(document).on('click', '#to-angle', function(e) {
+	$('#type').val('angle');
 	e.preventDefault();
 	var form = $(this).parents('form');
 
@@ -238,6 +231,7 @@ $(document).on('click', '#to-angle', function(e) {
 });
 
 $(document).on('click', '#to-bisnis', function(e) {
+	$('#type').val('bisnis');
 	e.preventDefault();
 	var form = $(this).parents('form');
 
@@ -255,7 +249,6 @@ $(document).on('click', '#to-bisnis', function(e) {
 		}
 	})
 });
-
 
 function validation()
 {
@@ -283,3 +276,22 @@ function validation()
 		text.innerHTML = "";
 	}
 }
+
+$(document).on('click', '#change-status-penawaran', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan membatalkan penawaran yang telah dibuat!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
