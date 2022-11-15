@@ -50,6 +50,7 @@ class MainController extends CI_Controller {
 	public function notifikasi()
 	{
 		$data['title'] = "Notifikasi";
+		$data['notifikasi'] = $this->Main_M->getNotifikasi()->result();
 
 		$this->load->view('partials/header', $data);
 		$this->load->view('partials/header-main');

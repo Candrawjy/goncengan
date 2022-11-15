@@ -76,4 +76,5 @@ $route['driver'] = 'DriverController/home_driver';
 $route['driver-mode'] = 'DriverController/mode_driver';
 $route['keluar-driver-mode'] = 'DriverController/keluar_mode_driver';
 $route['pasang-iklan'] = 'DriverController/pasang_iklan';
+$route['change-status-penawaran/(:num)'] = 'DriverController/change_status_penawaran/$1';
 $route['detail-pesanan'] = 'DriverController/detail_pesanan';
