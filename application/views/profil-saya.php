@@ -1,5 +1,5 @@
       <?php $users = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array(); ?>
-      <form autocomplete="off" action="<?=site_url('profil-saya')?>" method="post" enctype="multipart/form-data">
+      <form autocomplete="off" action="<?=site_url('profil-saya')?>" method="post" enctype="multipart/form-data" id="form">
         <div class="page-content">
           <div class="profile-img mb-3 border p-3 text-center rounded-3 bg-light">
             <?php if ($users['profile_picture'] == NULL) { ?>
@@ -62,8 +62,9 @@
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <input type="email" class="form-control rounded-3" name="email" value="<?=ucfirst($users['email'])?>" placeholder="<?=ucfirst($users['email'])?>">
-                    <label>Email</label>
+                    <input type="email" class="form-control rounded-3" id="floatingInputEmail" value="<?=ucfirst($users['email'])?>" placeholder="<?=ucfirst($users['email'])?>" name="email" pattern="[a-z0-9._%+-]+@apps.ipb.ac.id" onkeydown="validation()">
+                    <label>Email (apps.ipb.ac.id)</label>
+                    <small id="text" class="text-danger"></small>
                     <small class="text-danger"><?=form_error('email')?></small>
                   </div>
                 </div>

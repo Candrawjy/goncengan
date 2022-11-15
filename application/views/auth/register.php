@@ -58,7 +58,7 @@
             <div class="form-floating mb-3">
               <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email" name="email" value="<?=set_value('email')?>" pattern="[a-z0-9._%+-]+@apps.ipb.ac.id" onkeydown="validation()">
               <label for="floatingInputEmail">Email (@apps.ipb.ac.id)</label>
-              <span id="text" class="text-danger"></span>
+              <small id="text" class="text-danger"></small>
               <small class="text-danger"><?=form_error('email')?></small>
             </div>
 
@@ -109,33 +109,3 @@
       <footer class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center">
         <p class="mb-0 rounded-0">Sudah punya akun? <a href="<?=site_url('login')?>" class="text-primary">Masuk</a></p>
       </footer>
-      <!-- <script type="text/javascript">
-        function validation()
-        {
-          var form = document.getElementById("form");
-          var email = document.getElementById("floatingInputEmail").value;
-          var text = document.getElementById("text");
-          var pattern = /^[^ ]+@[apps]+.[ipb.ac.id]/;
-          
-          if (email.match(pattern))
-          {
-            form.classList.add("valid");
-            form.classList.remove("invalid");
-            text.innerHTML = "";
-              // text.innerHTML = "Your Email Address in Valid.";
-              // text.style.color = "#00ff00";
-            }
-            else
-            {
-              form.classList.remove("valid");
-              form.classList.add("invalid");
-              text.innerHTML = "Mohon masukkan email IPB aktif.";
-            }
-            if (email == "")
-            {
-              form.classList.remove("valid");
-              form.classList.remove("invalid");
-              text.innerHTML = "";
-            }
-          }
-        </script> -->
