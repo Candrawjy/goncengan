@@ -3,7 +3,12 @@
           <div class="offcanvas-header bg-secondary border-bottom border-light">
             <div class="hstack gap-3">
               <div class="">
-                <img src="https://via.placeholder.com/110X110" width="45" class="rounded-3 p-1 bg-white" alt=""/>
+                <?php $users = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array(); ?>
+                <?php if ($users['profile_picture'] == NULL) { ?>
+                  <img src="<?=base_url('')?>assets/images/profil/user.png" width="45" class="rounded-3 p-1 bg-white" alt="">
+                <?php } else { ?>
+                  <img src="<?=base_url('')?>assets/images/profil/<?=$users['profile_picture']?>" width="45" class="rounded-3 p-1 bg-white" alt="">
+                <?php } ?>
               </div>
               <div class="details">
                 <?php $namas = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array(); ?>
