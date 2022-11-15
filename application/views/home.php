@@ -27,7 +27,7 @@
         <div class="features-section">
           <h4 class="my-3 text-center fw-bold section-title">Mau jadi apa kamu hari ini?</h4>
           <div class="row row-cols-2 row-cols-md-12 g-3">
-            <a href="<?=site_url('pasang-iklan')?>" id="to-driver">
+            <a href="<?=site_url('driver-mode')?>" id="to-driver">
               <div class="col d-flex">
                 <div class="card rounded-3 w-100">
                   <div class="card-body">

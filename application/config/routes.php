@@ -57,7 +57,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['register'] = 'AuthController/register';
 $route['login'] = 'AuthController/login';
 $route['logout'] = 'AuthController/logout';
-// Auth Verify Route
 $route['verify'] = 'AuthController/verify';
 
 // Main Route
@@ -66,6 +65,7 @@ $route['menu'] = 'Welcome/menu';
 $route['beranda'] = 'MainController/beranda';
 $route['notifikasi'] = 'MainController/notifikasi';
 $route['profil'] = 'MainController/profil';
+$route['profil-saya'] = 'AuthController/profil_saya';
 $route['kontak'] = 'MainController/kontak';
 $route['kirim-pesan'] = 'MainController/kirimpesan';
 $route['tentang-kami'] = 'MainController/tentang_kami';
@@ -73,5 +73,7 @@ $route['faq'] = 'MainController/faq';
 
 // Driver Route
 $route['driver'] = 'DriverController/home_driver';
+$route['driver-mode'] = 'DriverController/mode_driver';
+$route['keluar-driver-mode'] = 'DriverController/keluar_mode_driver';
 $route['pasang-iklan'] = 'DriverController/pasang_iklan';
 $route['detail-pesanan'] = 'DriverController/detail_pesanan';

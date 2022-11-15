@@ -6,7 +6,8 @@
                 <img src="https://via.placeholder.com/110X110" width="45" class="rounded-3 p-1 bg-white" alt=""/>
               </div>
               <div class="details">
-                <h6 class="mb-0 text-white">Hi! <?=ucfirst($this->session->userdata('nama'))?></h6>
+                <?php $namas = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array(); ?>
+                <h6 class="mb-0 text-white">Hi! <?=ucfirst($namas['nama'])?></h6>
               </div>
             </div>
             <div data-bs-dismiss="offcanvas"><i class="bi bi-x-lg fs-5 text-white"></i></div>
@@ -16,7 +17,13 @@
             <nav class="sidebar-nav">
               <ul class="metismenu" id="sidenav">
                 <li>
+                  <?php if ($this->session->userdata('role') == "driver") { ?>
+                  <a href="<?=site_url('driver')?>">
+                  <?php } else if ($this->session->userdata('role') == "penumpang") { ?>
+                  <a href="<?=site_url('penumpang')?>">
+                  <?php } else { ?>
                   <a href="<?=site_url('beranda')?>">
+                  <?php } ?>
                     <i class="bi bi-house-door me-2"></i>
                     Beranda
                   </a>

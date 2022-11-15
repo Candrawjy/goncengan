@@ -11,7 +11,7 @@
         <div class="login-body">
           <h5 class="fw-bold">Daftar Sekarang</h5>
           <p class="mb-0">Daftar sekarang untuk menikmati layanan Goncengan</p>
-          <form class="mt-4" autocomplete="off" action="<?=site_url('register')?>" method="post">
+          <form class="mt-4" autocomplete="off" action="<?=site_url('register')?>" method="post" id="form">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-3" id="floatingInputNama" placeholder="Masukkan Nama" name="nama" value="<?=set_value('nama')?>">
               <label for="floatingInputNama">Nama Lengkap</label>
@@ -30,7 +30,7 @@
               <small class="text-danger"><?=form_error('no_wa')?></small>
             </div>
 
-            <div class="form-floating mb-3">
+            <!-- <div class="form-floating mb-3">
               <select class="form-control rounded-3" name="jenis_kelamin" value="<?=set_value('jenis_kelamin')?>">
                 <option value="">-- Pilih Jenis Kelamin --</option>
                 <option value="laki-laki">Laki-Laki</option>
@@ -38,11 +38,27 @@
               </select>
               <label for="floatingInputNo">Jenis Kelamin</label>
               <small class="text-danger"><?=form_error('jenis_kelamin')?></small>
+            </div> -->
+
+            <div class="form-group mb-3">
+              <div class="form-control rounded-3">
+                <label for="floatingInputEmail" class="small mb-1 text-secondary">Jenis Kelamin</label><br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="jenis_kelamin" id="inlineRadio1" value="laki-laki">
+                  <label class="form-check-label" for="inlineRadio1">Laki-Laki</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="jenis_kelamin" id="inlineRadio2" value="perempuan">
+                  <label class="form-check-label" for="inlineRadio2">Perempuan</label>
+                </div>
+              </div>
+              <small class="text-danger"><?=form_error('jenis_kelamin')?></small>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email" name="email" value="<?=set_value('email')?>">
-              <label for="floatingInputEmail">Email</label>
+              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email" name="email" value="<?=set_value('email')?>" pattern="[a-z0-9._%+-]+@apps.ipb.ac.id" onkeydown="validation()">
+              <label for="floatingInputEmail">Email (@apps.ipb.ac.id)</label>
+              <small id="text" class="text-danger"></small>
               <small class="text-danger"><?=form_error('email')?></small>
             </div>
 
@@ -57,7 +73,7 @@
 
             <div class="input-group mb-3" id="show_hide_password">
               <div class="form-floating flex-grow-1">
-                <input type="password" class="form-control rounded-3 rounded-end-0 border-end-0" id="floatingInputKonPassword" placeholder="Masukkan Password" name="passconf" value="<?=set_value('passconf')?>">
+                <input type="password" class="form-control rounded-3 rounded-end-0 border-end-0" id="floatingInputKonPassword" placeholder="Masukkan Konfirmasi Password" name="passconf" value="<?=set_value('passconf')?>">
                 <label for="floatingInputKonPassword">Konfirmasi Password</label>
               </div>
               <span class="input-group-text bg-transparent rounded-start-0 rounded-3 eye"><i class="bi bi-eye-slash"></i></span>

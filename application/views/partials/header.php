@@ -6,7 +6,7 @@
     <meta name="description" content="Goncengan adalah aplikasi ojek online yang dibuat oleh mahasiswa Sekolah Bisnis IPB University" />
     <meta name="keywords" content="Goncengan, Ojek Online, Ojek, Online, Ojol, IPB University, IPB, Sekolah Bisnis, SB IPB University" />
     <meta name="author" content="Goncengan" />
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="<?=base_url('')?>assets/images/logo.png">
     <title>Goncengan - <?=$title?></title>
 
     <link rel="stylesheet" type="text/css" href="<?=base_url('')?>assets/plugins/metismenu/metisMenu.min.css" />
