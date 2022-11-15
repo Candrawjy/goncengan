@@ -15,6 +15,7 @@ class Main_M extends CI_Model {
         $this->db->join('user', 'user.id = notifikasi.id_user');
         $this->db->order_by('notifikasi.created_at','DESC');
         $this->db->where('notifikasi.id_user', $this->session->userdata('id'));
+        // $this->db->where('user.role', $this->session->userdata('role'));
         $query = $this->db->get();
         return $query;
     }
