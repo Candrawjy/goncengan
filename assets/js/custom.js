@@ -178,7 +178,7 @@ $(document).on('click', '#to-driver', function(e) {
 
 	Swal.fire({
 		title: 'Apakah Anda yakin?',
-		text: "Anda tidak dapat kembali sampai Anda membatalkan!",
+		text: "Anda akan memasuki mode driver dan tidak dapat kembali sampai Anda membatalkan!",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
@@ -284,6 +284,177 @@ $(document).on('click', '#change-status-penawaran', function(e) {
 	Swal.fire({
 		title: 'Apakah Anda yakin?',
 		text: "Anda akan membatalkan penawaran yang telah dibuat!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#to-penumpang', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan memasuki mode penumpang dan tidak dapat kembali sampai Anda membatalkan!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#out-penumpang', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan keluar dari mode penumpang!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#cari-driver', function(e) {
+	e.preventDefault();
+	var form = $(this).parents('form');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Pastikan data sudah sesuai dan benar!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			form.submit();
+		}
+	})
+});
+
+$(document).on('click', '#change-status-pencarian', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan menghapus pencarian yang telah dibuat!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#pilih-driver', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan memilih driver ini!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#batal-pilih-driver', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Nanti telat kuliah loh! Dimarahin dosen! Berikan driver kesempatan!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#tolak-pesanan', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Jika Anda melakukan penolakan, Anda tidak dapat memasuki mode Driver selama 3 hari!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#terima-pesanan', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan menerima pesanan ini!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#selesai-pesanan', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Anda akan menyelesaikan pesanan ini!",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',

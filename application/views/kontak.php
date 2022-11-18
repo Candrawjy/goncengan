@@ -37,7 +37,7 @@
             </div>
             <hr>
             <div class="phone mb-3">
-              <h5 class="mb-0 fw-bold">Telepon</h5>
+              <h5 class="mb-0 fw-bold">Kontak</h5>
               <p class="mb-0 font-13">Whatsapp : <a href="https://wa.me/6281325801694" target="_blank">0813-2580-1694</a></p>
             </div>
             <hr>

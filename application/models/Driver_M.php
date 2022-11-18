@@ -28,4 +28,16 @@ class Driver_M extends CI_Model {
 		$this->db->update('penawaran', $data);
     }
 
+    public function ubah_pesanan($where, $data)
+    {
+        $this->db->where('id', $where);
+		$this->db->update('pesanan', $data);
+    }
+
+    public function selesai_pesanan($where, $data)
+    {
+        $this->db->where('id_penawaran', $where);
+		$this->db->update('pesanan', $data);
+    }
+
 }
