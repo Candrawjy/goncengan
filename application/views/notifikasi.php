@@ -9,7 +9,7 @@
               </div> -->
               <div class="">
                 <h6 class="text-dark fw-bold"><?=ucfirst($data->title)?></h6>
-                <small class="mb-1"><?= date('Y-m-d H:i', strtotime($data->created_at)) ?> WIB</small>
+                <small class="mb-1"><?= date('D, d-m-Y H:i', strtotime($data->created_at)) ?> WIB</small>
                 <p class="mb-0 fw-bold"><?=ucfirst($data->message)?></p>
               </div>
             </div>

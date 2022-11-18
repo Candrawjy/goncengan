@@ -10,6 +10,7 @@ class MainController extends CI_Controller {
         if ($this->session->userdata('email') == NULL) {
             redirect('/');
         }
+
         $this->load->model('Main_M');
     }
 
@@ -33,9 +34,12 @@ class MainController extends CI_Controller {
 
 	public function beranda()
 	{
-		if ($this->session->userdata('role') == "driver") {
-        	redirect('driver');
-        } else {
+		$role = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+		if ($role['role'] == 'driver') {
+			redirect('driver');
+		} else if ($role['role'] == 'penumpang') {
+			redirect('penumpang');
+		} else {
 			$data['title'] = "Beranda";
 
 			$this->load->view('partials/header', $data);

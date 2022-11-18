@@ -11,8 +11,7 @@
                 <?php } ?>
               </div>
               <div class="details">
-                <?php $namas = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array(); ?>
-                <h6 class="mb-0 text-white">Hi! <?=ucfirst($namas['nama'])?></h6>
+                <h6 class="mb-0 text-white">Hi! <?=ucfirst($users['nama'])?></h6>
               </div>
             </div>
             <div data-bs-dismiss="offcanvas"><i class="bi bi-x-lg fs-5 text-white"></i></div>
@@ -22,9 +21,9 @@
             <nav class="sidebar-nav">
               <ul class="metismenu" id="sidenav">
                 <li>
-                  <?php if ($this->session->userdata('role') == "driver") { ?>
+                  <?php if ($users['role'] == "driver") { ?>
                   <a href="<?=site_url('driver')?>">
-                  <?php } else if ($this->session->userdata('role') == "penumpang") { ?>
+                  <?php } else if ($users['role'] == "penumpang") { ?>
                   <a href="<?=site_url('penumpang')?>">
                   <?php } else { ?>
                   <a href="<?=site_url('beranda')?>">

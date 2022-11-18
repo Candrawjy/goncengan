@@ -68,6 +68,20 @@
             </div>
           </a>
         </div>
+        <?php } else if ($namas['role'] == "penumpang") { ?>
+        <div class="mb-3">
+          <a class="profile-item" href="<?=site_url('keluar-penumpang-mode')?>" id="out-penumpang">
+            <div class="card rounded-3">
+              <div class="card-body py-2">
+                <div class="d-flex align-items-center gap-3 fs-6">
+                  <div><i class="bi bi-x-square"></i></div>
+                  <div class="flex-grow-1">Keluar Mode Penumpang</div>
+                  <div><i class="bi bi-chevron-right"></i></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
         <?php } ?>
 
         <div class="mb-3">

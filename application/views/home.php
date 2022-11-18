@@ -41,7 +41,7 @@
                 </div>
               </div>
             </a>
-            <a href="javascript:;">
+            <a href="<?=site_url('penumpang-mode')?>" id="to-penumpang">
               <div class="col d-flex">
                 <div class="card rounded-3 w-100">
                   <div class="card-body">

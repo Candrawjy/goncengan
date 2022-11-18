@@ -7,38 +7,38 @@
                 <div class="my-3 border-bottom"></div>
                 <div class="mb-3">
                   <label class="form-label">Nama Pelanggan</label>
-                  <input type="text" class="form-control rounded-3" value="Budi" readonly>
+                  <input type="text" class="form-control rounded-3" value="<?=ucfirst($pesanan['nama'])?>" readonly>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Fakultas Tujuan</label>
+                  <input type="text" class="form-control rounded-3" value="<?php if($pesanan['lokasi_akhir'] == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($pesanan['lokasi_akhir'] == "sekolah-vokasi"){echo "Sekolah Vokasi";}?>" readonly>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Lokasi Jemput</label>
-                  <input type="text" class="form-control rounded-3" value="Kampus SV IPB Cilibende" readonly>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Lokasi Tujuan</label>
-                  <textarea class="form-control rounded-3" rows="4" cols="4" readonly>Jl. Malabar Ujung</textarea>
-                  <a href="#" class="btn btn-sm btn-primary mt-2">Lihat Lokasi</a>
+                  <textarea class="form-control rounded-3" rows="4" cols="4" readonly><?=ucfirst($pesanan['lokasi_user'])?></textarea>
+                  <a href="https://www.google.com/maps/search/?api=1&query=<?=$pesanan['lokasi_user']?>" class="btn btn-sm btn-primary mt-2" target="_blank">Cari Lokasi</a>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Jenis Kelamin</label>
-                  <input type="text" class="form-control rounded-3" value="Laki-Laki" readonly>
+                  <input type="text" class="form-control rounded-3" value="<?=ucfirst($pesanan['jenis_kelamin'])?>" readonly>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Catatan</label>
-                  <textarea class="form-control rounded-3" rows="4" cols="4" readonly>Nanti ketemu di depan warung ya, gw nanti bawa helm sendiri</textarea>
+                  <textarea class="form-control rounded-3" rows="4" cols="4" readonly><?=ucfirst($pesanan['catatan'])?></textarea>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                   <label class="form-label">Predikat</label><br>
                   <span class="badge text-bg-warning">Ramah</span>
                   <span class="badge text-bg-warning">Banyak Bicara</span>
                   <span class="badge text-bg-warning">Lucu</span>
                   <span class="badge text-bg-warning">Bijaksana</span>
-                </div>
+                </div> -->
               </div>
             </form>
           </div>
         </div>
 
-        <div class="card rounded-3">
+        <!-- <div class="card rounded-3">
           <div class="card-body">
             <div class="col-lg-12">
               <p><b>Biaya Antar :</b></p>
@@ -46,10 +46,10 @@
                 <b>Rp5.000</b>
               </div>
             </div>
-            <div class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center gap-3">
-              <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Tolak</a>
-              <a href="javascript:;" class="btn btn-ecomm rounded-3 btn-success flex-fill">Ambil</a>
-            </div>
           </div>
+        </div> -->
+        <div class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center gap-3">
+          <a href="<?=site_url('tolak-pesanan/'.$pesanan['id'])?>" id="tolak-pesanan" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Tolak</a>
+          <a href="<?=site_url('terima-pesanan/'.$pesanan['id'])?>" id="terima-pesanan" class="btn btn-ecomm rounded-3 btn-success flex-fill">Ambil</a>
         </div>
       </div>

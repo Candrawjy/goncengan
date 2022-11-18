@@ -76,5 +76,21 @@ $route['driver'] = 'DriverController/home_driver';
 $route['driver-mode'] = 'DriverController/mode_driver';
 $route['keluar-driver-mode'] = 'DriverController/keluar_mode_driver';
 $route['pasang-iklan'] = 'DriverController/pasang_iklan';
-$route['change-status-penawaran/(:num)'] = 'DriverController/change_status_penawaran/$1';
-$route['detail-pesanan'] = 'DriverController/detail_pesanan';
+$route['change-status-penawaran/(:any)'] = 'DriverController/change_status_penawaran/$1';
+$route['detail-pesanan/(:any)'] = 'DriverController/detail_pesanan/$1';
+$route['tolak-pesanan/(:any)'] = 'DriverController/tolak_pesanan/$1';
+$route['terima-pesanan/(:any)'] = 'DriverController/terima_pesanan/$1';
+$route['selesai-pesanan/(:any)'] = 'DriverController/selesai_pesanan/$1';
+
+// Penumpang Route
+$route['penumpang'] = 'PenumpangController/home_penumpang';
+$route['penumpang-mode'] = 'PenumpangController/mode_penumpang';
+$route['keluar-penumpang-mode'] = 'PenumpangController/keluar_mode_penumpang';
+$route['buat-pencarian'] = 'PenumpangController/buat_pencarian';
+$route['change-status-pencarian/(:any)'] = 'PenumpangController/change_status_pencarian/$1';
+$route['edit-pencarian/(:any)'] = 'PenumpangController/edit_pencarian/$1';
+$route['cari-driver/(:any)'] = 'PenumpangController/cari_driver/$1';
+$route['detail-driver/(:any)'] = 'PenumpangController/detail_driver/$1';
+$route['pesan-driver/(:any)'] = 'PenumpangController/pesan_driver/$1';
+$route['batalkan-driver/(:any)'] = 'PenumpangController/batal_pesan_driver/$1';
+$route['konfirmasi-selesai/(:any)'] = 'PenumpangController/konfirmasi_selesai/$1';
