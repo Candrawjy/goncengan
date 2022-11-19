@@ -7,5 +7,10 @@
           <div class="account-notification">
             <h6 class="mb-0 fw-bold text-dark"><?=$title?></h6>
           </div>
+          <ul class="navbar-nav ms-auto d-flex align-items-center top-right-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:;" onClick="document.location.reload(true)"><i class="bi bi-arrow-clockwise"></i></a>
+            </li>
+          </ul>
         </nav>
       </header>
