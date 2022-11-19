@@ -94,3 +94,4 @@ $route['detail-driver/(:any)'] = 'PenumpangController/detail_driver/$1';
 $route['pesan-driver/(:any)'] = 'PenumpangController/pesan_driver/$1';
 $route['batalkan-driver/(:any)'] = 'PenumpangController/batal_pesan_driver/$1';
 $route['konfirmasi-selesai/(:any)'] = 'PenumpangController/konfirmasi_selesai/$1';
+$route['konfirmasi-tolak/(:any)'] = 'PenumpangController/konfirmasi_tolak/$1';

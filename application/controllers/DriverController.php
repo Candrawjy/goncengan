@@ -209,6 +209,33 @@ class DriverController extends CI_Controller {
 		}
 	}
 
+	public function tolak_pesanan($id)
+	{
+		$data_penawaran = array(
+			'is_booked' => '0',
+		);
+
+		$data_pesanan = array(
+			'is_acc' => '2',
+		);
+
+		$data_user = array(
+			'is_banned' => '1',
+		);
+
+		$this->Driver_M->change_status_penawaran($id, $data_penawaran);
+		$this->Driver_M->selesai_pesanan($id, $data_pesanan);
+		$this->Driver_M->tolak_pesanan_user($id, $data_user);
+		$this->session->set_userdata('is_banned', '1');
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Berhasil untuk menolak pesanan ini!');
+			redirect('driver');
+		} else {
+			$this->session->set_flashdata('error', 'Gagal untuk menolak pesanan ini, coba lagi.');
+			redirect('driver');
+		}
+	}
+
 	public function selesai_pesanan($id)
 	{
 		$data = array(

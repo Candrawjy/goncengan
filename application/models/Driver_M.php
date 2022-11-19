@@ -40,4 +40,19 @@ class Driver_M extends CI_Model {
 		$this->db->update('pesanan', $data);
     }
 
+    public function tolak_pesanan($where, $data)
+    {
+        // $this->db->where('id', $where);
+        $this->db->where('id_user', $this->session->userdata('id'));
+        $this->db->order_by('created_at','DESC');
+        $this->db->limit(1, 'DESC');
+        $this->db->update('pesanan', $data);
+    }
+
+    public function tolak_pesanan_user($where, $data)
+    {
+        $this->db->where('id', $this->session->userdata('id'));
+        $this->db->update('user', $data);
+    }
+
 }

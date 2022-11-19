@@ -203,6 +203,45 @@
               </div>
             <?php endforeach; ?>
           <?php endforeach; ?>
+        <?php } else if($jml_pesanan_tolak != 0) { ?>
+          <?php foreach ($pesanan as $data) : ?>
+            <?php $detail_driver = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->where('penawaran.id', $data->id_penawaran)->get()->result(); ?>
+            <?php foreach ($detail_driver as $data_driver) : ?>
+              <h6 class="fw-bold mb-3 py-2 rounded-3 px-3 bg-light text-dark">Transaksi Ditolak</h6>
+              <div class="card rounded-3 mb-3">
+                <div class="card-body">
+                  <div class="d-flex flex-row gap-3">
+                    <div class="d-grid gap-2 align-self-start align-self-center">
+                      <?php if ($data_driver->profile_picture == NULL) { ?>
+                        <img src="<?=base_url('')?>assets/images/profil/user.png" width="45" class="rounded-3 p-1 bg-white" alt="">
+                      <?php } else { ?>
+                        <img src="<?=base_url('')?>assets/images/profil/<?=$data_driver->profile_picture?>" width="45" class="rounded-3 p-1 bg-white" alt="">
+                      <?php } ?>
+                    </div>
+                    <div class="vr"></div>
+                    <div class="address-info">
+                      <label class="form-check-label">
+                        <h6><?=ucfirst($data_driver->nama)?></h6>
+                        <h6><?=ucfirst($data_driver->nim)?></h6>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row text-center mt-3">
+                    <center>
+                      <img src="<?=base_url('')?>assets/images/illust/rejected.svg" style="width: 70% !important;" class="p-4" alt="">
+                    </center>
+                    <p class="h6"><b>Mohon maaf, driver <?=ucfirst($data_driver->nama)?> menolak untuk mengantarmu!</b></p>
+                    <p>Jangan sedih, kamu bisa mencari driver yang lainnya kok!</p>
+                  </div>
+                  <div class="container">
+                    <div class="row text-center">
+                      <a href="<?=site_url('konfirmasi-tolak/').$data->id?>" class="btn btn-ecomm rounded-3 btn-warning flex-fill">Lanjutkan</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php endforeach; ?>
         <?php } else { ?>
           <?php if($jml_pesanan_aktif != 1) { ?>
             <?php if($jml_pesanan_aktif_booked == 0) { ?>

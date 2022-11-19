@@ -138,6 +138,7 @@ class PenumpangController extends CI_Controller {
 			$data['jml_pesanan_waiting'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_acc', '0')->where('pesanan.is_done', '0')->where('pesanan.id_penawaran !=', NULL)->limit(1, 'DESC')->get()->num_rows();
 			$data['jml_pesanan_acc'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_acc', '1')->where('pesanan.id_penawaran !=', NULL)->where('pesanan.is_done', '0')->limit(1, 'DESC')->get()->num_rows();
 			$data['jml_pesanan_done'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_done', '1')->limit(1, 'DESC')->get()->num_rows();
+			$data['jml_pesanan_tolak'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_done', '0')->where('pesanan.is_acc', '2')->limit(1, 'DESC')->get()->num_rows();
 
 			$this->load->view('partials/header', $data);
 			$this->load->view('partials/header-home');
@@ -301,6 +302,23 @@ class PenumpangController extends CI_Controller {
 			redirect('penumpang');
 		} else {
 			$this->session->set_flashdata('error', 'Gagal untuk konfirmasi transaksi, coba lagi.');
+			redirect('penumpang');
+		}
+	}
+
+	public function konfirmasi_tolak($id)
+	{
+		$data = array(
+			'id_penawaran' => NULL,
+			'is_acc' => '0'
+		);
+
+		$this->Penumpang_M->change_status_pencarian($id, $data);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Silakan lanjutkan pencarian driver yang lain!');
+			redirect('penumpang');
+		} else {
+			$this->session->set_flashdata('error', 'Gagal untuk konfirmasi penolakan, coba lagi.');
 			redirect('penumpang');
 		}
 	}
