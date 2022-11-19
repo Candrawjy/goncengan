@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2022 at 04:07 PM
+-- Generation Time: Nov 18, 2022 at 09:41 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -40,8 +40,13 @@ CREATE TABLE `notifikasi` (
 --
 
 INSERT INTO `notifikasi` (`id`, `id_user`, `title`, `message`, `created_at`) VALUES
+('04749', '1', 'Pembatalan Penawaran Berhasil', 'Kamu berhasil untuk membatalkan penawaran.', '2022-11-16 15:21:54'),
+('3a1ba', '1', 'Pembatalan Penawaran Berhasil', 'Kamu berhasil untuk membatalkan penawaran.', '2022-11-16 15:19:56'),
+('52263', '1', 'Pencarian Driver Berhasil', 'Kamu berhasil untuk mencari driver. Silakan memilih driver dan menunggu beberapa saat sampai driver mengkonfirmasi pilihanmu!', '2022-11-16 15:40:24'),
 ('675f3', '1', 'Buat Penawaran Berhasil', 'Kamu berhasil untuk membuat penawaran. Silakan menunggu beberapa saat sampai penumpang memilihmu!', '2022-11-15 22:01:08'),
-('82d10', '1', 'Pembatalan Penawaran Berhasil', 'Kamu berhasil untuk membatalkan penawaran.', '2022-11-15 21:54:50');
+('75153', '1', 'Pembatalan Penawaran Berhasil', 'Kamu berhasil untuk membatalkan penawaran.', '2022-11-16 15:20:34'),
+('82d10', '1', 'Pembatalan Penawaran Berhasil', 'Kamu berhasil untuk membatalkan penawaran.', '2022-11-15 21:54:50'),
+('e39e1', '1', 'Pembatalan Pencarian Berhasil', 'Kamu berhasil untuk membatalkan pencarian.', '2022-11-17 14:54:56');
 
 -- --------------------------------------------------------
 
@@ -68,9 +73,9 @@ CREATE TABLE `penawaran` (
 --
 
 INSERT INTO `penawaran` (`id`, `id_user`, `lokasi_awal`, `lokasi_tujuan`, `waktu_berangkat`, `waktu_pulang`, `gender`, `type`, `is_active`, `is_booked`, `created_at`) VALUES
-('14368', '1', 'sekolah-bisnis', 'Malabar', '22:59:00', '20:01:00', 'laki-laki', 'angle', 0, 0, '2022-11-15 20:59:17'),
-('92185', '1', 'sekolah-vokasi', 'Malabar ujung', '07:00:00', '00:00:00', 'laki-laki', 'bisnis', 1, 0, '2022-11-15 22:01:08'),
-('c1e2d', '1', 'sekolah-bisnis', 'ddd', '03:32:00', '03:32:00', 'laki-laki', 'bisnis', 0, 0, '2022-11-15 03:29:37');
+('14368', '1', 'sekolah-bisnis', 'Malabar', '07:59:00', '20:01:00', 'laki-laki', 'angle', 0, 0, '2022-11-15 20:59:17'),
+('92185', '0045e', 'sekolah-vokasi', 'Malabar ujung', '07:00:00', '00:00:00', 'laki-laki', 'bisnis', 0, 0, '2022-11-15 22:01:08'),
+('c1e2d', '0045e', 'sekolah-bisnis', 'Malabar', '07:32:00', '03:32:00', 'keduanya', 'bisnis', 0, 1, '2022-11-15 03:29:37');
 
 -- --------------------------------------------------------
 
@@ -96,6 +101,35 @@ INSERT INTO `pesan` (`id`, `id_user`, `pesan`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pesanan`
+--
+
+CREATE TABLE `pesanan` (
+  `id` varchar(100) NOT NULL,
+  `id_user` varchar(100) NOT NULL,
+  `id_penawaran` varchar(100) DEFAULT NULL,
+  `lokasi_user` text NOT NULL,
+  `lokasi_akhir` text NOT NULL,
+  `jam_berangkat` time NOT NULL,
+  `jam_pulang` time NOT NULL,
+  `catatan` text DEFAULT NULL,
+  `is_active` int(11) NOT NULL DEFAULT 1,
+  `is_acc` int(11) NOT NULL DEFAULT 0,
+  `is_done` int(11) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`id`, `id_user`, `id_penawaran`, `lokasi_user`, `lokasi_akhir`, `jam_berangkat`, `jam_pulang`, `catatan`, `is_active`, `is_acc`, `is_done`, `created_at`) VALUES
+('19872', '1', '14368', 'Malabar', 'sekolah-bisnis', '07:59:00', '12:00:00', 'Nanti ketemu di depan warung ya, gw nanti bawa helm sendiri', 0, 0, 0, '2022-11-16 15:40:24'),
+('5add8', '1', 'c1e2d', 'Malabar', 'sekolah-bisnis', '07:59:00', '12:00:00', 'Nanti ketemu di depan warung ya, gw nanti bawa helm sendiri', 0, 1, 1, '2022-11-16 15:40:24');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -109,6 +143,7 @@ CREATE TABLE `user` (
   `email` text NOT NULL,
   `password` text NOT NULL,
   `is_active` int(11) NOT NULL DEFAULT 0,
+  `is_banned` int(11) NOT NULL DEFAULT 0,
   `role` text DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -117,10 +152,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `nim`, `no_wa`, `jenis_kelamin`, `profile_picture`, `email`, `password`, `is_active`, `role`, `created_at`) VALUES
-('0045e', 'Admin', 'J0303201031', '6280186861', 'laki-laki', NULL, 'admin@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, NULL, '2022-11-14 16:02:50'),
-('1', 'Candra', 'J0303201030', '62895377562532', 'laki-laki', 'Solusi-Transportasi-Terbaik_1.png', '2604candra@apps.ipb.ac.id', '827ccb0eea8a706c4c34a16891f84e7b', 1, NULL, '2022-11-14 01:22:40'),
-('2', 'CANDRA WIJAYA', 'J0303201032', '62895377562532', 'laki-laki', NULL, 'canderaw8@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, NULL, '2022-11-14 01:24:09');
+INSERT INTO `user` (`id`, `nama`, `nim`, `no_wa`, `jenis_kelamin`, `profile_picture`, `email`, `password`, `is_active`, `is_banned`, `role`, `created_at`) VALUES
+('0045e', 'Admin', 'J0303201031', '6280186861', 'laki-laki', NULL, 'admin@apps.ipb.ac.id', '827ccb0eea8a706c4c34a16891f84e7b', 1, 0, 'driver', '2022-11-14 16:02:50'),
+('1', 'Candra', 'J0303201030', '62895377562532', 'laki-laki', 'Solusi-Transportasi-Terbaik_1.png', '2604candra@apps.ipb.ac.id', '827ccb0eea8a706c4c34a16891f84e7b', 1, 0, 'penumpang', '2022-11-14 01:22:40'),
+('2', 'CANDRA WIJAYA', 'J0303201032', '62895377562532', 'laki-laki', NULL, 'canderaw8@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, 0, NULL, '2022-11-14 01:24:09');
 
 -- --------------------------------------------------------
 
@@ -162,6 +197,12 @@ ALTER TABLE `penawaran`
 -- Indexes for table `pesan`
 --
 ALTER TABLE `pesan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pesanan`
+--
+ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id`);
 
 --

@@ -49,7 +49,7 @@
           </div>
         </div> -->
         <div class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center gap-3">
-          <a href="<?=site_url('tolak-pesanan/'.$pesanan['id'])?>" id="tolak-pesanan" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Tolak</a>
+          <a href="<?=site_url('tolak-pesanan/'.$pesanan['id_penawaran'])?>" id="tolak-pesanan" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Tolak</a>
           <a href="<?=site_url('terima-pesanan/'.$pesanan['id'])?>" id="terima-pesanan" class="btn btn-ecomm rounded-3 btn-success flex-fill">Ambil</a>
         </div>
       </div>
