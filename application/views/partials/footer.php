@@ -16,7 +16,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.72.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     <script type="text/javascript">
-        var map = L.map('map').setView([-7.541598, 110.446100],13);
+        var map = L.map('map').setView([-6.586674786040669, 106.80608902528489],13);
 
         var basemap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: ''
@@ -30,7 +30,7 @@
         }).addTo(map);
 
         function onLocationFound(e) {
-            var puncakmerapi = [-7.541598, 110.446100];
+            var puncakmerapi = [-6.586674786040669, 106.80608902528489];
 
             var distance = (L.latLng(e.latlng).distanceTo(puncakmerapi) / 1000).toFixed(2);
 
@@ -38,7 +38,7 @@
 
             locationMarker = L.marker(e.latlng);
             locationMarker.addTo(map);
-            locationMarker.bindPopup("<p class='text-center'>Anda berada <b>" + distance + " km</b><br>dari puncak Merapi.<br>Akurasi GPS " + radius + " meter.</p>");
+            locationMarker.bindPopup("<p class='text-center'>Anda berada <b>" + distance + " km</b><br>dari Sekolah Bisnis IPB University.<br>Akurasi GPS " + radius + " meter.</p>");
             locationMarker.openPopup();
 
             var latlongline = [e.latlng,puncakmerapi];
