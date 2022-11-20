@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Lokasi Kamu</label><br>
-                  <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div>
+                  <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br>
                   <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user"><?=set_value('lokasi_user')?></textarea>
                   <small class="text-danger"><?=form_error('lokasi_user')?></small>
                 </div>
