@@ -669,4 +669,8 @@ a {
 	}
 }
 
+.leaflet-control-attribution a {
+    display: none !important;
+}
+
 
