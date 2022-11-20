@@ -1,5 +1,5 @@
       <div class="page-content">
-        <form autocomplete="off" action="<?=site_url('cari-driver')?>" method="post">
+        <form autocomplete="off" action="<?=site_url('buat-pencarian')?>" method="post">
           <div class="card rounded-3 mb-3">
             <div class="card-body">
               <div class="form-body">
@@ -16,8 +16,9 @@
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Lokasi Kamu</label><br>
-                  <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br>
-                  <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user"><?=set_value('lokasi_user')?></textarea>
+                  <!-- <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br> -->
+                  <!-- <input type="hidden" class="form-control rounded-3" name="lokasi_user" id="lokasi_user" readonly> -->
+                  <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user" id="lokasi_user"><?=set_value('lokasi_user')?></textarea>
                   <small class="text-danger"><?=form_error('lokasi_user')?></small>
                 </div>
                 <div class="mb-3">
@@ -30,6 +31,13 @@
                   <input type="time" class="form-control rounded-3" name="jam_pulang" value="<?=set_value('jam_pulang')?>">
                   <small class="text-danger"><?=form_error('jam_pulang')?></small>
                 </div>
+                <!-- <div class="mb-3">
+                  <label class="form-label">Total Harga</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text rounded-3 rounded-end-0">Rp</span>
+                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly>
+                  </div>
+                </div> -->
                 <div class="d-flex align-items-center justify-content-center gap-2">
                   <input type="submit" class="btn btn-ecomm rounded-3 btn-primary flex-fill" id="cari-driver" value="Buat Pencarian" name="types">
                 </div>

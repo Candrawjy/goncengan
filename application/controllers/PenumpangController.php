@@ -113,7 +113,7 @@ class PenumpangController extends CI_Controller {
 				if ($this->db->affected_rows() > 0) {
 					$this->db->insert('notifikasi', $data_notifikasi);
 					$this->session->set_flashdata('success', 'Berhasil mencari driver!');
-					redirect('pencarian');
+					redirect('penumpang');
 				} else {
 					$this->session->set_flashdata('error', 'Gagal untuk mencari driver, coba lagi!');
 					echo "<script> history.go(-1); </script>";
