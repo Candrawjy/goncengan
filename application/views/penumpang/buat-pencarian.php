@@ -6,11 +6,6 @@
                 <h6 class="mb-0 fw-bold">Masukkan Data Berikut</h6>
                 <div class="my-3 border-bottom"></div>
                 <div class="mb-3">
-                  <label class="form-label">Lokasi Kamu</label>
-                  <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user"><?=set_value('lokasi_user')?></textarea>
-                  <small class="text-danger"><?=form_error('lokasi_user')?></small>
-                </div>
-                <div class="mb-3">
                   <label class="form-label">Fakultas Tujuan</label>
                   <select name="lokasi_akhir" class="form-control rounded-3">
                     <option value="">-- Pilih Fakultas Tujuan --</option>
@@ -18,6 +13,12 @@
                     <option value="sekolah-vokasi">Sekolah Vokasi IPB University</option>
                   </select>
                   <small class="text-danger"><?=form_error('lokasi_akhir')?></small>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Lokasi Kamu</label><br>
+                  <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div>
+                  <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user"><?=set_value('lokasi_user')?></textarea>
+                  <small class="text-danger"><?=form_error('lokasi_user')?></small>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Waktu Berangkat</label>
