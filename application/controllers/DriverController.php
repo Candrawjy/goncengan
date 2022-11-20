@@ -70,53 +70,74 @@ class DriverController extends CI_Controller {
 			$this->session->set_flashdata('error', 'Anda belum memilih mode.');
 			redirect('/');
 		} else {
-			$this->form_validation->set_rules('lokasi_awal', 'Fakultas Tujuan', 'required');
-			$this->form_validation->set_rules('lokasi_tujuan', 'Lokasi Kamu', 'required');
-			$this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
-			$this->form_validation->set_rules('waktu_pulang', 'Waktu Pulang', 'required');
-			$this->form_validation->set_rules('gender', 'Gender Penumpang', 'required');
-
-			$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
-
-			$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
-
-			if ($this->form_validation->run() == FALSE) {
-				$data['title'] = "Buat Penawaran";
-
-				$this->load->view('partials/header', $data);
-				$this->load->view('partials/header-main');
-				$this->load->view('driver/add-iklan');
-				$this->load->view('partials/footer');
+			$iklan_aktif = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->order_by('penawaran.created_at','DESC')->where('penawaran.id_user', $this->session->userdata('id'))->where('penawaran.is_active', '1')->limit(1, 'DESC')->get()->num_rows();
+			if($iklan_aktif == 1) {
+				$this->session->set_flashdata('error', 'Anda telah memiliki penawaran yang aktif. Hapus terlebih dahulu untuk membuat penawaran yang baru!');
+				echo "<script> history.go(-1); </script>";
 			} else {
-				$id = substr(md5(rand()),0,5);
-				$data = [
-					'id' => $id,
-					'id_user' => $this->session->userdata('id'),
-					'lokasi_awal' => $this->input->post('lokasi_awal'),
-					'lokasi_tujuan' => $this->input->post('lokasi_tujuan'),
-					'waktu_berangkat' => $this->input->post('waktu_berangkat'),
-					'waktu_pulang' => $this->input->post('waktu_pulang'),
-					'gender' => $this->input->post('gender'),
-					'type' => $this->input->post('type'),
-					'harga' => $this->input->post('harga'),
-				];
+				$this->form_validation->set_rules('lokasi_awal', 'Fakultas Tujuan', 'required');
+				$this->form_validation->set_rules('lokasi_tujuan', 'Lokasi Kamu', 'required');
+				$this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
+				$this->form_validation->set_rules('waktu_pulang', 'Waktu Pulang', 'required');
+				$this->form_validation->set_rules('gender', 'Gender Penumpang', 'required');
 
-				$id_notifikasi = substr(md5(rand()),0,5);
-				$data_notifikasi = [
-					'id' => $id_notifikasi,
-					'id_user' => $this->session->userdata('id'),
-					'title' => "Buat Penawaran Berhasil",
-					'message' => "Kamu berhasil untuk membuat penawaran. Silakan menunggu beberapa saat sampai penumpang memilihmu!",
-				];
+				$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
 
-				$this->db->insert('penawaran', $data);
-				if ($this->db->affected_rows() > 0) {
-					$this->db->insert('notifikasi', $data_notifikasi);
-					$this->session->set_flashdata('success', 'Berhasil untuk membuat penawaran Anda!');
-					redirect('driver');
+				$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+				if ($this->form_validation->run() == FALSE) {
+					$data['title'] = "Buat Penawaran";
+
+					$this->load->view('partials/header', $data);
+					$this->load->view('partials/header-main');
+					$this->load->view('driver/add-iklan');
+					$this->load->view('partials/footer');
 				} else {
-					$this->session->set_flashdata('error', 'Gagal untuk membuat penawaran Anda, coba lagi!');
-					echo "<script> history.go(-1); </script>";
+					$id = substr(md5(rand()),0,5);
+
+					if($this->input->post('type') == "angle") {
+						$data = [
+							'id' => $id,
+							'id_user' => $this->session->userdata('id'),
+							'lokasi_awal' => $this->input->post('lokasi_awal'),
+							'lokasi_tujuan' => $this->input->post('lokasi_tujuan'),
+							'waktu_berangkat' => $this->input->post('waktu_berangkat'),
+							'waktu_pulang' => $this->input->post('waktu_pulang'),
+							'gender' => $this->input->post('gender'),
+							'type' => $this->input->post('type'),
+							'harga' => "0",
+						];
+					} else {
+						$data = [
+							'id' => $id,
+							'id_user' => $this->session->userdata('id'),
+							'lokasi_awal' => $this->input->post('lokasi_awal'),
+							'lokasi_tujuan' => $this->input->post('lokasi_tujuan'),
+							'waktu_berangkat' => $this->input->post('waktu_berangkat'),
+							'waktu_pulang' => $this->input->post('waktu_pulang'),
+							'gender' => $this->input->post('gender'),
+							'type' => $this->input->post('type'),
+							'harga' => $this->input->post('harga'),
+						];
+					}
+
+					$id_notifikasi = substr(md5(rand()),0,5);
+					$data_notifikasi = [
+						'id' => $id_notifikasi,
+						'id_user' => $this->session->userdata('id'),
+						'title' => "Buat Penawaran Berhasil",
+						'message' => "Kamu berhasil untuk membuat penawaran. Silakan menunggu beberapa saat sampai penumpang memilihmu!",
+					];
+
+					$this->db->insert('penawaran', $data);
+					if ($this->db->affected_rows() > 0) {
+						$this->db->insert('notifikasi', $data_notifikasi);
+						$this->session->set_flashdata('success', 'Berhasil untuk membuat penawaran Anda!');
+						redirect('driver');
+					} else {
+						$this->session->set_flashdata('error', 'Gagal untuk membuat penawaran Anda, coba lagi!');
+						echo "<script> history.go(-1); </script>";
+					}
 				}
 			}
 		}
