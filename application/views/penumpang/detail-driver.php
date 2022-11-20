@@ -29,7 +29,7 @@
                   <center>
                     <img src="<?=base_url('')?>assets/images/illust/business.svg" style="width: 80% !important;" class="p-5" alt="">
                   </center>
-                  <p class="h6">Kamu menemukan <b>seorang driver bisnis</b> yang mau mengantarmu dengan imbalan sebesar Rp-</p>
+                  <p class="h6">Kamu menemukan <b>seorang driver bisnis</b> yang mau mengantarmu dengan imbalan sebesar Rp<?=number_format($data->harga)?></p>
                 <?php } ?>
               </div>
             </div>

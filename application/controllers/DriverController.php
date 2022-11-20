@@ -98,6 +98,7 @@ class DriverController extends CI_Controller {
 					'waktu_pulang' => $this->input->post('waktu_pulang'),
 					'gender' => $this->input->post('gender'),
 					'type' => $this->input->post('type'),
+					'harga' => $this->input->post('harga'),
 				];
 
 				$id_notifikasi = substr(md5(rand()),0,5);

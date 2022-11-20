@@ -7,7 +7,7 @@
                 <div class="my-3 border-bottom"></div>
                 <div class="mb-3">
                   <label class="form-label">Fakultas Tujuan</label>
-                  <select name="lokasi_akhir" class="form-control rounded-3">
+                  <select name="lokasi_akhir" class="form-control rounded-3" id="lokasi_akhir">
                     <option value="">-- Pilih Fakultas Tujuan --</option>
                     <option value="sekolah-bisnis">Sekolah Bisnis IPB University</option>
                     <option value="sekolah-vokasi">Sekolah Vokasi IPB University</option>
@@ -15,11 +15,11 @@
                   <small class="text-danger"><?=form_error('lokasi_akhir')?></small>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Lokasi Kamu</label><br>
-                  <!-- <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br> -->
-                  <!-- <input type="hidden" class="form-control rounded-3" name="lokasi_user" id="lokasi_user" readonly> -->
-                  <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user" id="lokasi_user"><?=set_value('lokasi_user')?></textarea>
+                  <label class="form-label">Lokasi Kamu <small class="text-danger">(Pastikan kamu telah memilih Fakultas tujuan terlebih dahulu)</small></label><br>
+                  <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br>
+                  <input type="hidden" class="form-control rounded-3" name="lokasi_user" id="lokasi_user" readonly>
                   <small class="text-danger"><?=form_error('lokasi_user')?></small>
+                  <!-- <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user" id="lokasi_user"><?=set_value('lokasi_user')?></textarea> -->
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Waktu Berangkat</label>
@@ -38,6 +38,10 @@
                     <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly>
                   </div>
                 </div> -->
+                <div class="mb-3">
+                  <label class="form-label">Catatan</label><br>
+                  <textarea class="form-control rounded-3" rows="4" cols="4" name="catatan"></textarea>
+                </div>
                 <div class="d-flex align-items-center justify-content-center gap-2">
                   <input type="submit" class="btn btn-ecomm rounded-3 btn-primary flex-fill" id="cari-driver" value="Buat Pencarian" name="types">
                 </div>
