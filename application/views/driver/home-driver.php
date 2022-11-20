@@ -31,7 +31,8 @@
                 <div class="card rounded-3 w-100">
                   <div class="card-body">
                     <div class="alert alert-danger text-center" role="alert">
-                      <b>Mohon maaf, akun kamu kami bekukan dari mode driver selama 3 hari karena menolak pesanan!</b>
+                      <b>Mohon maaf, akun kamu kami bekukan dari mode driver selama 3 hari karena menolak pesanan!<br>
+                      <a href="javascript:;">Hubungi kami</a> jika ini adalah kesalahan.</b>
                     </div>
                   </div>
                 </div>
@@ -84,6 +85,7 @@
                             <h6><?=ucfirst($data_pesanan->nama)?></h6>
                             <h6><?=ucfirst($data_pesanan->nim)?></h6>
                             <h6><?php if($data_pesanan->lokasi_akhir == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data_pesanan->lokasi_akhir == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></h6>
+                            <h6>Total Harga : Rp<?=number_format($data->harga)?></h6>
                           </label>
                         </div>
                       </div>
@@ -130,10 +132,11 @@
                       <label class="form-check-label" for="flexRadioDefaultAddress1">
                         <span class="fw-bold mb-0 h6"><?=ucfirst($data->nama)?></span><br>
                         <span>Lokasi Awal : <b><?php if($data->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
-                        <span>Lokasi Tujuan : <b><?=ucfirst($data->lokasi_tujuan)?></b></span><br>
+                        <!-- <span>Lokasi Tujuan : <b><?=ucfirst($data->lokasi_tujuan)?></b></span><br> -->
                         <span>Waktu Operasional : <b><?= date('H:i', strtotime($data->waktu_berangkat)) ?> - <?= date('H:i', strtotime($data->waktu_pulang)) ?> WIB</b></span><br>
                         <span>Gender Penumpang : <b><?=ucfirst($data->gender)?></b></span><br>
                         <span>Tipe Penawaran : <b><?php if($data->type == "angle"){echo "Angel Driver";}elseif($data->type == "bisnis"){echo "Business Driver";}?></b></span><br>
+                        <span>Total Harga : <b>Rp<?=number_format($data->harga)?></b></span><br>
                       </label>
                     </div>
                     <div class="alert alert-warning text-center mt-3" role="alert">

@@ -58,7 +58,7 @@
                         <center>
                           <img src="<?=base_url('')?>assets/images/illust/business.svg" style="width: 80% !important;" class="p-5" alt="">
                         </center>
-                        <p class="h6">Kamu menemukan <b>seorang driver bisnis</b> yang mau mengantarmu dengan imbalan sebesar Rp-</p>
+                        <p class="h6">Kamu menemukan <b>seorang driver bisnis</b> yang mau mengantarmu dengan imbalan sebesar Rp<?=number_format($data_driver->harga)?></p>
                       <?php } ?>
                       <div class="container mt-3">
                         <?php if($data->is_acc == '0') { ?>
@@ -114,6 +114,7 @@
                         <h6><?=ucfirst($data_driver->nama)?></h6>
                         <h6><?=ucfirst($data_driver->nim)?></h6>
                         <h6><?php if($data_driver->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data_driver->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></h6>
+                        <h6>Total Harga : Rp<?=ucfirst($data_driver->harga)?></h6>
                       </label>
                     </div>
                   </div>
@@ -271,7 +272,7 @@
                   <div class="d-flex flex-row gap-3">
                     <div class="address-info">
                       <label class="form-check-label" for="flexRadioDefaultAddress1">
-                        <span>Lokasi Kamu : <b><?=ucfirst($data->lokasi_user)?></b></span><br>
+                        <!-- <span>Lokasi Kamu : <b><?=ucfirst($data->lokasi_user)?></b></span><br> -->
                         <span>Fakultas Tujuan : <b><?php if($data->lokasi_akhir == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_akhir == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
                         <span>Waktu Operasional : <b><?= date('H:i', strtotime($data->jam_berangkat)) ?> - <?= date('H:i', strtotime($data->jam_pulang)) ?> WIB</b></span><br>
                       </label>

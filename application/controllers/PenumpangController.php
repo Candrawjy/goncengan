@@ -70,56 +70,57 @@ class PenumpangController extends CI_Controller {
 			redirect('/');
 		} else {
 			$pesanan_aktif = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_acc', '0')->limit(1, 'DESC')->get()->num_rows();
-			// if($pesanan_aktif == 1) {
-			// 	$this->session->set_flashdata('error', 'Anda telah memiliki pencarian yang aktif. Hapus terlebih dahulu untuk mencari driver yang baru!');
-			// 	echo "<script> history.go(-1); </script>";
-			// } else {
-			$this->form_validation->set_rules('lokasi_user', 'Lokasi Kamu', 'required');
-			$this->form_validation->set_rules('lokasi_akhir', 'Fakultas Tujuan', 'required');
-			$this->form_validation->set_rules('jam_berangkat', 'Waktu Berangkat', 'required');
-			$this->form_validation->set_rules('jam_pulang', 'Waktu Pulang', 'required');
-
-			$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
-
-			$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
-
-			if ($this->form_validation->run() == FALSE) {
-				$data['title'] = "Buat Pencarian";
-
-				$this->load->view('partials/header', $data);
-				$this->load->view('partials/header-main');
-				$this->load->view('penumpang/buat-pencarian');
-				$this->load->view('partials/footer');
+			if($pesanan_aktif == 1) {
+				$this->session->set_flashdata('error', 'Anda telah memiliki pencarian yang aktif. Hapus terlebih dahulu untuk mencari driver yang baru!');
+				echo "<script> history.go(-1); </script>";
 			} else {
-				$id = substr(md5(rand()),0,5);
-				$data = [
-					'id' => $id,
-					'id_user' => $this->session->userdata('id'),
-					'lokasi_user' => $this->input->post('lokasi_user'),
-					'lokasi_akhir' => $this->input->post('lokasi_akhir'),
-					'jam_berangkat' => $this->input->post('jam_berangkat'),
-					'jam_pulang' => $this->input->post('jam_pulang'),
-				];
+				$this->form_validation->set_rules('lokasi_user', 'Lokasi Kamu', 'required');
+				$this->form_validation->set_rules('lokasi_akhir', 'Fakultas Tujuan', 'required');
+				$this->form_validation->set_rules('jam_berangkat', 'Waktu Berangkat', 'required');
+				$this->form_validation->set_rules('jam_pulang', 'Waktu Pulang', 'required');
 
-				$id_notifikasi = substr(md5(rand()),0,5);
-				$data_notifikasi = [
-					'id' => $id_notifikasi,
-					'id_user' => $this->session->userdata('id'),
-					'title' => "Pencarian Driver Berhasil",
-					'message' => "Kamu berhasil untuk mencari driver. Silakan memilih driver dan menunggu beberapa saat sampai driver mengkonfirmasi pilihanmu!",
-				];
+				$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
 
-				$this->db->insert('pesanan', $data);
-				if ($this->db->affected_rows() > 0) {
-					$this->db->insert('notifikasi', $data_notifikasi);
-					$this->session->set_flashdata('success', 'Berhasil mencari driver!');
-					redirect('penumpang');
+				$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+				if ($this->form_validation->run() == FALSE) {
+					$data['title'] = "Buat Pencarian";
+
+					$this->load->view('partials/header', $data);
+					$this->load->view('partials/header-main');
+					$this->load->view('penumpang/buat-pencarian');
+					$this->load->view('partials/footer');
 				} else {
-					$this->session->set_flashdata('error', 'Gagal untuk mencari driver, coba lagi!');
-					echo "<script> history.go(-1); </script>";
+					$id = substr(md5(rand()),0,5);
+					$data = [
+						'id' => $id,
+						'id_user' => $this->session->userdata('id'),
+						'lokasi_user' => $this->input->post('lokasi_user'),
+						'lokasi_akhir' => $this->input->post('lokasi_akhir'),
+						'jam_berangkat' => $this->input->post('jam_berangkat'),
+						'jam_pulang' => $this->input->post('jam_pulang'),
+						'catatan' => $this->input->post('catatan'),
+					];
+
+					$id_notifikasi = substr(md5(rand()),0,5);
+					$data_notifikasi = [
+						'id' => $id_notifikasi,
+						'id_user' => $this->session->userdata('id'),
+						'title' => "Pencarian Driver Berhasil",
+						'message' => "Kamu berhasil untuk mencari driver. Silakan memilih driver dan menunggu beberapa saat sampai driver mengkonfirmasi pilihanmu!",
+					];
+
+					$this->db->insert('pesanan', $data);
+					if ($this->db->affected_rows() > 0) {
+						$this->db->insert('notifikasi', $data_notifikasi);
+						$this->session->set_flashdata('success', 'Berhasil mencari driver!');
+						redirect('penumpang');
+					} else {
+						$this->session->set_flashdata('error', 'Gagal untuk mencari driver, coba lagi!');
+						echo "<script> history.go(-1); </script>";
+					}
 				}
 			}
-			// }
 		}
 	}
 

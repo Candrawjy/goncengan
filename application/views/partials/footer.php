@@ -36,29 +36,47 @@
             }
         }).addTo(map);
 
-        L.Control.geocoder({
-            position: 'topleft',
-            placeholder: 'Cari lokasi...',
-        }).addTo(map);
+        // L.Control.geocoder({
+        //     position: 'topleft',
+        //     placeholder: 'Cari lokasi...',
+        // }).addTo(map);
 
         function onLocationFound(e) {
-            var puncakmerapi = [-6.586674786040669, 106.80608902528489];
+            var nama_fakultas = document.getElementById("lokasi_akhir");
+            var lokasi_fakultas = nama_fakultas.value;
+            if(lokasi_fakultas == 'sekolah-bisnis') {
+                var lokasi_fakultas = "Sekolah Bisnis";
+                var fakultas = [-6.586674786040669, 106.80608902528489];
+            } else if(lokasi_fakultas == 'sekolah-vokasi') {
+                var lokasi_fakultas = "Sekolah Vokasi";
+                var fakultas = [-6.589090625741272, 106.80609333877949];
+            } else {
+                var fakultas = [e.latitude, e.longitude];
+            }
 
-            var distance = (L.latLng(e.latlng).distanceTo(puncakmerapi) / 1000).toFixed(2);
+            var distance = (L.latLng(e.latlng).distanceTo(fakultas) / 1000).toFixed(2);
 
             var radius = (e.accuracy / 2).toFixed(1);
 
-            var tarif = ((L.latLng(e.latlng).distanceTo(puncakmerapi) / 1000).toFixed(2)) * (3000);
+            if (distance < 3.00 && distance != 0.00) {
+                var tarif = 5000;
+            } else if (distance > 3.00){
+                var tarif = ((5000 * 1) + (distance * 1300)).toFixed(0);
+            } else {
+                var tarif = 0;
+            }
+
+            // var tarif = (distance * 3000);
             document.getElementById("lokasi_user").value = e.latitude + "," + e.longitude;
             document.getElementById("harga").value = tarif;
 
             locationMarker = L.marker(e.latlng);
             locationMarker.addTo(map);
-            locationMarker.bindPopup("<p class='text-center'> Anda berada <b>" + distance + " km</b><br>dari Sekolah Bisnis IPB University.<br>Akurasi GPS " + radius + " meter.</p>");
+            locationMarker.bindPopup("<p class='text-center'> Anda berada <b>" + distance + " km</b><br>dari " + lokasi_fakultas + ".<br>Akurasi GPS " + radius + " meter.</p>");
             locationMarker.openPopup();
-            console.log("Your coordinate is: Lat: " + e.latitude + " Long: " + e.longitude + " Accuracy: " + e.accuracy + " Cost: " + tarif)
+            console.log("Your coordinate is: Lat: " + e.latitude + " Long: " + e.longitude + " Accuracy: " + e.accuracy + " Distance: " + distance + " Cost: " + tarif)
 
-            var latlongline = [e.latlng,puncakmerapi];
+            var latlongline = [e.latlng,fakultas];
             var polyline = L.polyline(latlongline, {
                 color: 'red',
                 weight: 5,
