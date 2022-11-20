@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+  <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +20,9 @@
     <link href="<?=base_url('')?>assets/plugins/sweetalert/sweetalert2.min.css" rel="stylesheet"/>
     <link href="<?=base_url('')?>assets/css/style.css" rel="stylesheet"/>
     <link href="<?=base_url('')?>assets/css/dark-theme.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.72.0/dist/L.Control.Locate.min.css" />
   </head>
   <body <?php if($this->uri->segment(1) == "menu"){echo 'class="splash-bg-2"';}?>>
     <div id="flash" data-flash="<?=$this->session->flashdata('success')?>"></div>
