@@ -62,7 +62,7 @@
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <input type="email" class="form-control rounded-3" id="floatingInputEmail" value="<?=ucfirst($users['email'])?>" placeholder="<?=ucfirst($users['email'])?>" name="email" pattern="[a-z0-9._%+-]+@apps.ipb.ac.id" onkeydown="validation()">
+                    <input type="email" class="form-control rounded-3" id="floatingInputEmail" value="<?=ucfirst($users['email'])?>" placeholder="<?=ucfirst($users['email'])?>" name="email" pattern="[a-z0-9A-Z._%+-]+@apps.ipb.ac.id" onkeydown="validation()">
                     <label>Email (apps.ipb.ac.id)</label>
                     <small id="text" class="text-danger"></small>
                     <small class="text-danger"><?=form_error('email')?></small>
@@ -94,8 +94,8 @@
         </div>
 
         <footer class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center gap-3">
-          <button type="submit" class="btn btn-ecomm btn-outline-dark rounded-3 flex-fill">Simpan</button>
+          <a href="javascript:;" class="btn btn-ecomm btn-outline-dark rounded-3 flex-fill" onclick="history.back()">Batal</a>
           <div class="vr"></div>
-          <a href="javascript:;" class="btn btn-ecomm btn-warning rounded-3 flex-fill" onclick="history.back()">Batal</a>
+          <button type="submit" class="btn btn-ecomm btn-warning rounded-3 flex-fill">Simpan</button>
         </footer>
       </form>

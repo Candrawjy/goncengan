@@ -13,7 +13,7 @@
           <p class="mb-0">Masuk ke akun Anda untuk menikmati layanan Goncengan</p>
           <form class="mt-4" autocomplete="off" action="<?=site_url('login')?>" method="post" id="form">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email" name="email" value="<?=set_value('email')?>" pattern="[a-z0-9._%+-]+@apps.ipb.ac.id" onkeydown="validation()">
+              <input type="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="Masukkan Email" name="email" value="<?=set_value('email')?>" pattern="[a-z0-9A-Z._%+-]+@apps.ipb.ac.id" onkeydown="validation()">
               <label for="floatingInputEmail">Email (@apps.ipb.ac.id)</label>
               <small id="text" class="text-danger"></small>
               <small class="text-danger"><?=form_error('email')?></small>
