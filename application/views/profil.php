@@ -8,7 +8,18 @@
           <?php } ?>
           <h6 class="mb-0 fw-bold mt-3"><?=ucfirst($namas['nama'])?></h6>
           <?php if ($namas['role'] != NULL) { ?>
-          <p class="mb-0 mt-2 text-muted small">(<?=ucfirst($namas['role'])?>)</p>
+            <p class="mb-0 mt-2 text-muted small">(<?=ucfirst($namas['role'])?>)</p>
+          <?php } ?>
+          <?php if ($namas['role'] == "driver") { ?>
+            <?php
+            if ($balance > 0) {
+              foreach($balance as $data) {
+                ?>
+                Saldo Saya : Rp<?=number_format($data['balance'])?>
+                <?php
+              }
+            }
+            ?>
           <?php } ?>
         </div>
 
@@ -55,33 +66,33 @@
         </div>
 
         <?php if ($namas['role'] == "driver") { ?>
-        <div class="mb-3">
-          <a class="profile-item" href="<?=site_url('keluar-driver-mode')?>" id="out-driver">
-            <div class="card rounded-3">
-              <div class="card-body py-2">
-                <div class="d-flex align-items-center gap-3 fs-6">
-                  <div><i class="bi bi-x-square"></i></div>
-                  <div class="flex-grow-1">Keluar Mode Driver</div>
-                  <div><i class="bi bi-chevron-right"></i></div>
+          <div class="mb-3">
+            <a class="profile-item" href="<?=site_url('keluar-driver-mode')?>" id="out-driver">
+              <div class="card rounded-3">
+                <div class="card-body py-2">
+                  <div class="d-flex align-items-center gap-3 fs-6">
+                    <div><i class="bi bi-x-square"></i></div>
+                    <div class="flex-grow-1">Keluar Mode Driver</div>
+                    <div><i class="bi bi-chevron-right"></i></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </div>
+            </a>
+          </div>
         <?php } else if ($namas['role'] == "penumpang") { ?>
-        <div class="mb-3">
-          <a class="profile-item" href="<?=site_url('keluar-penumpang-mode')?>" id="out-penumpang">
-            <div class="card rounded-3">
-              <div class="card-body py-2">
-                <div class="d-flex align-items-center gap-3 fs-6">
-                  <div><i class="bi bi-x-square"></i></div>
-                  <div class="flex-grow-1">Keluar Mode Penumpang</div>
-                  <div><i class="bi bi-chevron-right"></i></div>
+          <div class="mb-3">
+            <a class="profile-item" href="<?=site_url('keluar-penumpang-mode')?>" id="out-penumpang">
+              <div class="card rounded-3">
+                <div class="card-body py-2">
+                  <div class="d-flex align-items-center gap-3 fs-6">
+                    <div><i class="bi bi-x-square"></i></div>
+                    <div class="flex-grow-1">Keluar Mode Penumpang</div>
+                    <div><i class="bi bi-chevron-right"></i></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </div>
+            </a>
+          </div>
         <?php } ?>
 
         <div class="mb-3">

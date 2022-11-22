@@ -72,13 +72,13 @@
 
             locationMarker = L.marker(e.latlng);
             locationMarker.addTo(map);
-            locationMarker.bindPopup("<p class='text-center'> Anda berada <b>" + distance + " km</b><br>dari " + lokasi_fakultas + ".<br>Akurasi GPS " + radius + " meter.</p>");
+            locationMarker.bindPopup("<p class='text-center'> Anda berada <b>" + distance + " km</b><br>dari " + lokasi_fakultas + ".</p>");
             locationMarker.openPopup();
             console.log("Your coordinate is: Lat: " + e.latitude + " Long: " + e.longitude + " Accuracy: " + e.accuracy + " Distance: " + distance + " Cost: " + tarif)
 
             var latlongline = [e.latlng,fakultas];
             var polyline = L.polyline(latlongline, {
-                color: 'red',
+                color: 'transparent',
                 weight: 5,
                 opacity: 0.7,
             });
@@ -86,6 +86,24 @@
         }
 
         map.on('locationfound', onLocationFound);
+    </script>
+    <script type="text/javascript">
+        function opsi(value){
+            var sw = $("#setwaktu").val();
+            if(sw == "berangkat"){
+                document.getElementById("waktu-berangkat").disabled = false;
+                document.getElementById("waktu-pulang").disabled = true;
+            } else if(sw == "pulang") {
+                document.getElementById("waktu-berangkat").disabled = true;
+                document.getElementById("waktu-pulang").disabled = false;
+            } else if(sw == "keduanya") {
+                document.getElementById("waktu-berangkat").disabled = false;
+                document.getElementById("waktu-pulang").disabled = false;
+            } else {
+                document.getElementById("waktu-berangkat").disabled = true;
+                document.getElementById("waktu-pulang").disabled = true;
+            }
+        }
     </script>
 </body>
 </html>

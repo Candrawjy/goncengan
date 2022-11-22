@@ -53,7 +53,7 @@
                         <center>
                           <img src="<?=base_url('')?>assets/images/illust/angel.svg" style="width: 80% !important;" class="p-5" alt="">
                         </center>
-                        <p class="h6">Yey! Kamu menemukan <b>seorang malaikat</b> yang mau mengantarmu dengan tulus!</p>
+                        <p class="h6">Yey! Kamu menemukan <b>seorang malaikat</b> yang mau mengantarmu dengan imbalan hanya sebesar <b>Rp<?php $potongan=(20/100)*$data->harga; $totalharga=$data->harga-$potongan; echo number_format($totalharga)?></b> dari Rp<?=number_format($data->harga)?>!</p>
                       <?php } else { ?>
                         <center>
                           <img src="<?=base_url('')?>assets/images/illust/business.svg" style="width: 80% !important;" class="p-5" alt="">
@@ -114,7 +114,11 @@
                         <h6><?=ucfirst($data_driver->nama)?></h6>
                         <h6><?=ucfirst($data_driver->nim)?></h6>
                         <h6><?php if($data_driver->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data_driver->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></h6>
+                        <?php if($data_driver->type == 'angle') { ?>
+                        <h6>Total Harga : Rp<?php $potongan=(20/100)*$data->harga; $totalharga=$data->harga-$potongan; echo number_format($totalharga)?></h6>
+                        <?php } else { ?>
                         <h6>Total Harga : Rp<?=number_format($data->harga)?></h6>
+                        <?php } ?>
                       </label>
                     </div>
                   </div>
@@ -274,7 +278,7 @@
                       <label class="form-check-label" for="flexRadioDefaultAddress1">
                         <!-- <span>Lokasi Kamu : <b><?=ucfirst($data->lokasi_user)?></b></span><br> -->
                         <span>Fakultas Tujuan : <b><?php if($data->lokasi_akhir == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_akhir == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
-                        <span>Waktu Operasional : <b><?= date('H:i', strtotime($data->jam_berangkat)) ?> - <?= date('H:i', strtotime($data->jam_pulang)) ?> WIB</b></span><br>
+                        <span>Waktu <?=ucfirst($data->type_waktu)?> : <b><?= date('H:i', strtotime($data->waktu)) ?> WIB</b></span><br>
                         <span>Total Harga : <b>Rp<?=number_format($data->harga)?></b></span>
                       </label>
                     </div>

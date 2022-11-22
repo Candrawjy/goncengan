@@ -80,6 +80,7 @@ $route['change-status-penawaran/(:any)'] = 'DriverController/change_status_penaw
 $route['detail-pesanan/(:any)'] = 'DriverController/detail_pesanan/$1';
 $route['tolak-pesanan/(:any)'] = 'DriverController/tolak_pesanan/$1';
 $route['terima-pesanan/(:any)'] = 'DriverController/terima_pesanan/$1';
+$route['bayar-pesanan/(:any)'] = 'DriverController/bayar_pesanan/$1';
 $route['selesai-pesanan/(:any)'] = 'DriverController/selesai_pesanan/$1';
 
 // Penumpang Route

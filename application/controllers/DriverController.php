@@ -101,9 +101,17 @@ class DriverController extends CI_Controller {
 			} else {
 				$this->form_validation->set_rules('lokasi_awal', 'Fakultas Tujuan', 'required');
 				$this->form_validation->set_rules('lokasi_tujuan', 'Lokasi Kamu', 'required');
-				$this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
-				$this->form_validation->set_rules('waktu_pulang', 'Waktu Pulang', 'required');
+				// $this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
+				// $this->form_validation->set_rules('waktu_pulang', 'Waktu Pulang', 'required');
 				$this->form_validation->set_rules('gender', 'Gender Penumpang', 'required');
+				$this->form_validation->set_rules('wo', 'Waktu Operasional', 'required');
+				if ($this->input->post('waktu_berangkat')) {
+					$this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
+				}
+
+				if ($this->input->post('waktu_pulang')) {
+					$this->form_validation->set_rules('waktu_pulang', 'Waktu Pulang', 'required');
+				}
 
 				$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
 
@@ -129,6 +137,7 @@ class DriverController extends CI_Controller {
 							'waktu_pulang' => $this->input->post('waktu_pulang'),
 							'gender' => $this->input->post('gender'),
 							'type' => $this->input->post('type'),
+							'type_waktu_penawaran' => $this->input->post('wo'),
 							'harga' => "0",
 						];
 					} else {
@@ -141,8 +150,9 @@ class DriverController extends CI_Controller {
 							'waktu_pulang' => $this->input->post('waktu_pulang'),
 							'gender' => $this->input->post('gender'),
 							'type' => $this->input->post('type'),
+							'type_waktu_penawaran' => $this->input->post('wo'),
 							// 'harga' => $this->input->post('harga'),
-							'harga' => "",
+							'harga' => "0",
 						];
 					}
 
@@ -152,11 +162,12 @@ class DriverController extends CI_Controller {
 						'id_user' => $this->session->userdata('id'),
 						'title' => "Buat Penawaran Berhasil",
 						'message' => "Kamu berhasil untuk membuat penawaran. Silakan menunggu beberapa saat sampai penumpang memilihmu!",
+						'type' => $this->session->userdata('role')
 					];
 
 					$this->db->insert('penawaran', $data);
+					$this->db->insert('notifikasi', $data_notifikasi);
 					if ($this->db->affected_rows() > 0) {
-						$this->db->insert('notifikasi', $data_notifikasi);
 						$this->session->set_flashdata('success', 'Berhasil untuk membuat penawaran Anda!');
 						redirect('driver');
 					} else {
@@ -197,7 +208,7 @@ class DriverController extends CI_Controller {
 			redirect('/');
 		} else {
 			$data['title'] = "Detail Pesanan";
-			$data['pesanan'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->where('pesanan.id_penawaran', $id)->get()->row_array();
+			$data['pesanan'] = $this->db->select('user.*, pesanan.*, penawaran.*, pesanan.harga as harga_pesanan, pesanan.id as id_pesanan')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->join('penawaran', 'penawaran.id = pesanan.id_penawaran')->where('pesanan.id_penawaran', $id)->get()->row_array();
 
 			$this->load->view('partials/header', $data);
 			$this->load->view('partials/header-main');
@@ -225,6 +236,7 @@ class DriverController extends CI_Controller {
 				'id_user' => $this->session->userdata('id'),
 				'title' => "Pembatalan Penawaran Berhasil",
 				'message' => "Kamu berhasil untuk membatalkan penawaran.",
+				'type' => $this->session->userdata('role')
 			];
 
 			$where = $id;
@@ -269,7 +281,7 @@ class DriverController extends CI_Controller {
 	{
 		$data_penawaran = array(
 			'is_booked' => '0',
-			'is_active' => '0',
+			'is_active' => '1',
 		);
 
 		$data_pesanan = array(
@@ -285,14 +297,15 @@ class DriverController extends CI_Controller {
 			'id' => $id_notifikasi,
 			'id_user' => $this->session->userdata('id'),
 			'title' => "Menolak Pesanan",
-			'message' => "Kamu telah menolak pesanan. Oleh karena itu, akun kamu kami bekukan selama 3 hari!",
+			'message' => "Kamu telah menolak pesanan!",
+			// 'message' => "Kamu telah menolak pesanan. Oleh karena itu, akun kamu kami bekukan selama 3 hari!",
 			'type' => $this->session->userdata('role')
 		];
 
 		$this->Driver_M->change_status_penawaran($id, $data_penawaran);
 		$this->Driver_M->selesai_pesanan($id, $data_pesanan);
-		$this->Driver_M->tolak_pesanan_user($id, $data_user);
-		$this->session->set_userdata('is_banned', '1');
+		// $this->Driver_M->tolak_pesanan_user($id, $data_user);
+		// $this->session->set_userdata('is_banned', '1');
 		if ($this->db->affected_rows() > 0) {
 			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Berhasil untuk menolak pesanan ini!');
@@ -330,6 +343,32 @@ class DriverController extends CI_Controller {
 			redirect('driver');
 		} else {
 			$this->session->set_flashdata('error', 'Gagal untuk menyelesaikan transaksi, coba lagi.');
+			redirect('driver');
+		}
+	}
+
+	public function bayar_pesanan($id)
+	{
+		$data = array(
+			'is_payment' => '1'
+		);
+
+		$id_notifikasi = substr(md5(rand()),0,5);
+		$data_notifikasi = [
+			'id' => $id_notifikasi,
+			'id_user' => $this->session->userdata('id'),
+			'title' => "Pesanan Telah Dibayar",
+			'message' => "Penumpang telah membayar transaksi kamu!",
+			'type' => $this->session->userdata('role')
+		];
+
+		$this->Driver_M->selesai_pesanan($id, $data);
+		if ($this->db->affected_rows() > 0) {
+			$this->db->insert('notifikasi', $data_notifikasi);
+			$this->session->set_flashdata('success', 'Transaksi telah dibayar! Silakan menyelesaikan transaksi kamu!');
+			redirect('driver');
+		} else {
+			$this->session->set_flashdata('error', 'Gagal untuk membayar transaksi, coba lagi.');
 			redirect('driver');
 		}
 	}

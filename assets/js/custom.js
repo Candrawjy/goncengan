@@ -416,7 +416,7 @@ $(document).on('click', '#tolak-pesanan', function(e) {
 
 	Swal.fire({
 		title: 'Apakah Anda yakin?',
-		text: "Jika Anda melakukan penolakan, Anda tidak dapat memasuki mode Driver selama 3 hari!",
+		text: "Anda akan menolak pesanan ini!",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
@@ -428,6 +428,25 @@ $(document).on('click', '#tolak-pesanan', function(e) {
 		}
 	})
 });
+
+// $(document).on('click', '#tolak-pesanan', function(e) {
+// 	e.preventDefault();
+// 	var url = $(this).attr('href');
+
+// 	Swal.fire({
+// 		title: 'Apakah Anda yakin?',
+// 		text: "Jika Anda melakukan penolakan, Anda tidak dapat memasuki mode Driver selama 3 hari!",
+// 		icon: 'warning',
+// 		showCancelButton: true,
+// 		confirmButtonColor: '#3085d6',
+// 		cancelButtonColor: '#d33',
+// 		confirmButtonText: 'Ya, yakin!'
+// 	}).then((result) => {
+// 		if (result.isConfirmed) {
+// 			window.location = url;
+// 		}
+// 	})
+// });
 
 $(document).on('click', '#terima-pesanan', function(e) {
 	e.preventDefault();
@@ -460,6 +479,68 @@ $(document).on('click', '#selesai-pesanan', function(e) {
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location = url;
+		}
+	})
+});
+
+$(document).on('click', '#to-berangkat', function(e) {
+	$('#type_waktu').val('berangkat');
+	e.preventDefault();
+	var form = $(this).parents('form');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Pastikan data sudah sesuai dan benar!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			form.submit();
+		}
+	})
+});
+
+$(document).on('click', '#to-pulang', function(e) {
+	$('#type_waktu').val('pulang');
+	e.preventDefault();
+	var form = $(this).parents('form');
+
+	Swal.fire({
+		title: 'Apakah Anda yakin?',
+		text: "Pastikan data sudah sesuai dan benar!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, yakin!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			form.submit();
+		}
+	})
+});
+
+$(document).on('click', '#bayar-pesanan', function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+
+	Swal.fire({
+		title: 'Lakukan Pembayaran Sekarang!',
+		text: "Pastikan Anda melakukan pembayaran menggunakan kode QR diatas!",
+		imageUrl: 'https://cdn.candrawjy.my.id/assets/images/qris.png',
+		imageWidth: '100%',
+		imageHeight: '100%',
+		imageAlt: 'Custom image',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Sudah'
 	}).then((result) => {
 		if (result.isConfirmed) {
 			window.location = url;

@@ -98,7 +98,11 @@
                           </div>
                           <p>Sekarang kamu bisa berkomunikasi dengannya! Jangan lupa hargai dia yang telah memilihmu!</p>
                           <a href="https://wa.me/62<?=$data_pesanan->no_wa?>?text=Halo,%20<?=$data_pesanan->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
+                          <?php if($data_pesanan->is_payment == "0") { ?>
+                          <a href="<?=site_url('bayar-pesanan/'.$data->id)?>" class="btn btn-ecomm rounded-3 btn-primary flex-fill mt-3" id="bayar-pesanan">Bayar</a>
+                          <?php } else { ?>
                           <a href="<?=site_url('selesai-pesanan/'.$data->id)?>" class="btn btn-ecomm rounded-3 btn-primary flex-fill mt-3" id="selesai-pesanan">Selesai</a>
+                          <?php } ?>
                         </div>
                       </div>
                     </div>
@@ -135,7 +139,7 @@
                         <span class="fw-bold mb-0 h6"><?=ucfirst($data->nama)?></span><br>
                         <span>Lokasi Awal : <b><?php if($data->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
                         <!-- <span>Lokasi Tujuan : <b><?=ucfirst($data->lokasi_tujuan)?></b></span><br> -->
-                        <span>Waktu Operasional : <b><?= date('H:i', strtotime($data->waktu_berangkat)) ?> - <?= date('H:i', strtotime($data->waktu_pulang)) ?> WIB</b></span><br>
+                        <span>Waktu <?php if($data->waktu_berangkat != NULL){echo "Berangkat";}else{echo "Pulang";}?> : <b><?= $data->waktu_berangkat ?> <?=$data->waktu_pulang ?> WIB</b></span><br>
                         <span>Gender Penumpang : <b><?=ucfirst($data->gender)?></b></span><br>
                         <span>Tipe Penawaran : <b><?php if($data->type == "angle"){echo "Angel Driver";}elseif($data->type == "bisnis"){echo "Business Driver";}?></b></span><br>
                       </label>

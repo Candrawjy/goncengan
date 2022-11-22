@@ -101,9 +101,10 @@ class PenumpangController extends CI_Controller {
 			} else {
 				$this->form_validation->set_rules('lokasi_user', 'Lokasi Kamu', 'required');
 				$this->form_validation->set_rules('lokasi_akhir', 'Fakultas Tujuan', 'required');
-				$this->form_validation->set_rules('jam_berangkat', 'Waktu Berangkat', 'required');
-				$this->form_validation->set_rules('jam_pulang', 'Waktu Pulang', 'required');
+				// $this->form_validation->set_rules('jam_berangkat', 'Waktu Berangkat', 'required');
+				// $this->form_validation->set_rules('jam_pulang', 'Waktu Pulang', 'required');
 				$this->form_validation->set_rules('harga', 'Total Harga', 'required');
+				$this->form_validation->set_rules('waktu', 'Waktu', 'required');
 
 				$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
 
@@ -123,8 +124,10 @@ class PenumpangController extends CI_Controller {
 						'id_user' => $this->session->userdata('id'),
 						'lokasi_user' => $this->input->post('lokasi_user'),
 						'lokasi_akhir' => $this->input->post('lokasi_akhir'),
-						'jam_berangkat' => $this->input->post('jam_berangkat'),
-						'jam_pulang' => $this->input->post('jam_pulang'),
+						// 'jam_berangkat' => $this->input->post('jam_berangkat'),
+						// 'jam_pulang' => $this->input->post('jam_pulang'),
+						'waktu' => $this->input->post('waktu'),
+						'type_waktu' => $this->input->post('type_waktu'),
 						'harga' => $this->input->post('harga'),
 						'catatan' => $this->input->post('catatan'),
 					];
@@ -135,6 +138,7 @@ class PenumpangController extends CI_Controller {
 						'id_user' => $this->session->userdata('id'),
 						'title' => "Pencarian Driver Berhasil",
 						'message' => "Kamu berhasil untuk mencari driver. Silakan memilih driver dan menunggu beberapa saat sampai driver mengkonfirmasi pilihanmu!",
+						'type' => $this->session->userdata('role')
 					];
 
 					$this->db->insert('pesanan', $data);
@@ -190,6 +194,7 @@ class PenumpangController extends CI_Controller {
 			'id_user' => $this->session->userdata('id'),
 			'title' => "Pembatalan Pencarian Berhasil",
 			'message' => "Kamu berhasil untuk membatalkan pencarian.",
+			'type' => $this->session->userdata('role')
 		];
 
 		$where = $id;
