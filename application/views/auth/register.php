@@ -26,7 +26,7 @@
 
             <div class="form-floating mb-3">
               <input type="number" class="form-control rounded-3" id="floatingInputNo" placeholder="Masukkan No. Whatsapp" name="no_wa" value="<?=set_value('no_wa')?>">
-              <label for="floatingInputNo">No. Whatsapp (contoh : 62852xxx)</label>
+              <label for="floatingInputNo">No. Whatsapp (contoh : 0852xxx)</label>
               <small class="text-danger"><?=form_error('no_wa')?></small>
             </div>
 

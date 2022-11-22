@@ -30,7 +30,7 @@
                 <div class="col">
                   <div class="form-floating">
                     <input type="number" class="form-control rounded-3" name="no_wa" value="<?=$users['no_wa']?>" placeholder="<?=$users['no_wa']?>">
-                    <label>No. Whatsapp (contoh : 62852xxx)</label>
+                    <label>No. Whatsapp (contoh : 0852xxx)</label>
                     <small class="text-danger"><?=form_error('no_wa')?></small>
                   </div>
                 </div>

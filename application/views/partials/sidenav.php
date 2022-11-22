@@ -39,7 +39,7 @@
                   </a>
                   <ul>
                     <li><a href="<?=site_url('profil')?>">Profil Saya</a></li>
-                    <li><a href="javascript:;">Pesanan Saya</a></li>
+                    <!-- <li><a href="javascript:;">Pesanan Saya</a></li> -->
                     <li><a href="<?=site_url('notifikasi')?>">Notifikasi</a></li>
                   </ul>
                 </li>

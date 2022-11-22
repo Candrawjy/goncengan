@@ -26,7 +26,7 @@
           </a>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <a class="profile-item" href="javascript:;">
             <div class="card rounded-3">
               <div class="card-body py-2">
@@ -38,7 +38,7 @@
               </div>
             </div>
           </a>
-        </div>
+        </div> -->
 
         <div class="mb-3">
           <a class="profile-item" href="<?=site_url('notifikasi')?>">

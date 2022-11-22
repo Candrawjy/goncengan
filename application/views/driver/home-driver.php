@@ -32,7 +32,7 @@
                   <div class="card-body">
                     <div class="alert alert-danger text-center" role="alert">
                       <b>Mohon maaf, akun kamu kami bekukan dari mode driver selama 3 hari karena menolak pesanan!<br>
-                      <a href="javascript:;">Hubungi kami</a> jika ini adalah kesalahan.</b>
+                      <a href="javascript:;">Hubungi kami</a> jika akun kamu belum aktif setelah 3 hari kedepan atau jika ini adalah kesalahan.</b>
                     </div>
                   </div>
                 </div>
@@ -85,7 +85,9 @@
                             <h6><?=ucfirst($data_pesanan->nama)?></h6>
                             <h6><?=ucfirst($data_pesanan->nim)?></h6>
                             <h6><?php if($data_pesanan->lokasi_akhir == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data_pesanan->lokasi_akhir == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></h6>
-                            <h6>Total Harga : Rp<?=number_format($data->harga)?></h6>
+                            <?php if($data->type == 'bisnis') { ?>
+                            <h6>Total Harga : Rp<?=number_format($data_pesanan->harga)?></h6>
+                            <?php } ?>
                           </label>
                         </div>
                       </div>
@@ -95,7 +97,7 @@
                             <b>Yey! Kamu sedang bersama <?=ucfirst($data_pesanan->nama)?> sebagai penumpangmu!</b>
                           </div>
                           <p>Sekarang kamu bisa berkomunikasi dengannya! Jangan lupa hargai dia yang telah memilihmu!</p>
-                          <a href="https://wa.me/<?=$data_pesanan->no_wa?>?text=Halo,%20<?=$data_pesanan->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
+                          <a href="https://wa.me/62<?=$data_pesanan->no_wa?>?text=Halo,%20<?=$data_pesanan->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
                           <a href="<?=site_url('selesai-pesanan/'.$data->id)?>" class="btn btn-ecomm rounded-3 btn-primary flex-fill mt-3" id="selesai-pesanan">Selesai</a>
                         </div>
                       </div>
@@ -136,7 +138,6 @@
                         <span>Waktu Operasional : <b><?= date('H:i', strtotime($data->waktu_berangkat)) ?> - <?= date('H:i', strtotime($data->waktu_pulang)) ?> WIB</b></span><br>
                         <span>Gender Penumpang : <b><?=ucfirst($data->gender)?></b></span><br>
                         <span>Tipe Penawaran : <b><?php if($data->type == "angle"){echo "Angel Driver";}elseif($data->type == "bisnis"){echo "Business Driver";}?></b></span><br>
-                        <span>Total Harga : <b>Rp<?=number_format($data->harga)?></b></span><br>
                       </label>
                     </div>
                     <div class="alert alert-warning text-center mt-3" role="alert">

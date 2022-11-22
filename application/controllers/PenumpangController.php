@@ -33,6 +33,15 @@ class PenumpangController extends CI_Controller {
 		$this->session->set_userdata('role', 'penumpang');
 		$this->Penumpang_M->ModePenumpang($where, $data);
 		if ($this->db->affected_rows() > 0) {
+			$id_notifikasi = substr(md5(rand()),0,5);
+			$data_notifikasi = [
+				'id' => $id_notifikasi,
+				'id_user' => $this->session->userdata('id'),
+				'title' => "Masuk Mode Penumpang",
+				'message' => "Kamu memasuki mode penumpang!",
+				'type' => $this->session->userdata('role')
+			];
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Anda sedang memasuki mode penumpang');
 			redirect('penumpang');
 		} else {
@@ -43,22 +52,38 @@ class PenumpangController extends CI_Controller {
 
 	public function keluar_mode_penumpang()
 	{
-		$id = $this->session->userdata('id');
-
-		$data = array(
-			'id' => $id,
-			'role' => NULL,
-		);
-
-		$where = $id;
-		$this->session->unset_userdata('role');
-		$this->Penumpang_M->ModePenumpang($where, $data);
-		if ($this->db->affected_rows() > 0) {
-			$this->session->set_flashdata('success', 'Berhasil keluar dari mode penumpang');
-			redirect('/');
+		$pesanan_aktif = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->limit(1, 'DESC')->get()->num_rows();
+		if($pesanan_aktif == 1) {
+			$this->session->set_flashdata('error', 'Anda sedang memiliki pencarian yang aktif. Hapus terlebih dahulu untuk mengubah mode!');
+			echo "<script> history.go(-1); </script>";
 		} else {
-			$this->session->set_flashdata('error', 'Gagal untuk keluar dari mode penumpang.');
-			redirect('/');
+			$id = $this->session->userdata('id');
+
+			$data = array(
+				'id' => $id,
+				'role' => NULL,
+			);
+
+			$id_notifikasi = substr(md5(rand()),0,5);
+			$data_notifikasi = [
+				'id' => $id_notifikasi,
+				'id_user' => $this->session->userdata('id'),
+				'title' => "Keluar Mode Penumpang",
+				'message' => "Kamu keluar dari mode penumpang!",
+				'type' => $this->session->userdata('role')
+			];
+			$this->db->insert('notifikasi', $data_notifikasi);
+
+			$where = $id;
+			$this->session->unset_userdata('role');
+			$this->Penumpang_M->ModePenumpang($where, $data);
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('success', 'Berhasil keluar dari mode penumpang');
+				redirect('/');
+			} else {
+				$this->session->set_flashdata('error', 'Gagal untuk keluar dari mode penumpang.');
+				redirect('/');
+			}
 		}
 	}
 
@@ -78,6 +103,7 @@ class PenumpangController extends CI_Controller {
 				$this->form_validation->set_rules('lokasi_akhir', 'Fakultas Tujuan', 'required');
 				$this->form_validation->set_rules('jam_berangkat', 'Waktu Berangkat', 'required');
 				$this->form_validation->set_rules('jam_pulang', 'Waktu Pulang', 'required');
+				$this->form_validation->set_rules('harga', 'Total Harga', 'required');
 
 				$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
 
@@ -99,6 +125,7 @@ class PenumpangController extends CI_Controller {
 						'lokasi_akhir' => $this->input->post('lokasi_akhir'),
 						'jam_berangkat' => $this->input->post('jam_berangkat'),
 						'jam_pulang' => $this->input->post('jam_pulang'),
+						'harga' => $this->input->post('harga'),
 						'catatan' => $this->input->post('catatan'),
 					];
 
@@ -180,19 +207,23 @@ class PenumpangController extends CI_Controller {
 	public function edit_pencarian($id)
 	{
 		if ($this->input->post('lokasi_user')) {
-			$this->form_validation->set_rules('lokasi_user', 'Peran', 'required');
+			$this->form_validation->set_rules('lokasi_user', 'Lokasi Kamu', 'required');
 		}
 
 		if ($this->input->post('lokasi_akhir')) {
-			$this->form_validation->set_rules('lokasi_akhir', 'Status', 'required');
+			$this->form_validation->set_rules('lokasi_akhir', 'Fakultas Tujuan', 'required');
 		}
 
 		if ($this->input->post('jam_berangkat')) {
-			$this->form_validation->set_rules('jam_berangkat', 'Email', 'required');
+			$this->form_validation->set_rules('jam_berangkat', 'Waktu Berangkat', 'required');
 		}
 
 		if ($this->input->post('jam_pulang')) {
-			$this->form_validation->set_rules('jam_pulang', 'No Handphone', 'required');
+			$this->form_validation->set_rules('jam_pulang', 'Waktu Pulang', 'required');
+		}
+
+		if ($this->input->post('harga')) {
+			$this->form_validation->set_rules('harga', 'Total Harga', 'required');
 		}
 
 		$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
@@ -258,9 +289,19 @@ class PenumpangController extends CI_Controller {
 			'id_penawaran' => $id,
 		);
 
+		$id_notifikasi = substr(md5(rand()),0,5);
+		$data_notifikasi = [
+			'id' => $id_notifikasi,
+			'id_user' => $this->session->userdata('id'),
+			'title' => "Memesan Driver",
+			'message' => "Kamu berhasil menemukan driver yang diinginkan!",
+			'type' => $this->session->userdata('role')
+		];
+
 		$this->Penumpang_M->pesan_driver_penawaran($id, $data_penawaran);
 		$this->Penumpang_M->pesan_driver_pesanan($id, $data_pesanan);
 		if ($this->db->affected_rows() > 0) {
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Berhasil untuk memesan driver ini! Silakan menunggu beberapa saat sampai pesanan Anda dikonfirmasi.');
 			redirect('penumpang');
 		} else {
@@ -280,9 +321,19 @@ class PenumpangController extends CI_Controller {
 			'id_penawaran' => NULL,
 		);
 
+		$id_notifikasi = substr(md5(rand()),0,5);
+		$data_notifikasi = [
+			'id' => $id_notifikasi,
+			'id_user' => $this->session->userdata('id'),
+			'title' => "Membatalkan Driver",
+			'message' => "Kamu telah membatalkan pesanan untuk driver!",
+			'type' => $this->session->userdata('role')
+		];
+
 		$this->Penumpang_M->pesan_driver_penawaran($id, $data_penawaran);
 		$this->Penumpang_M->pesan_driver_pesanan($id, $data_pesanan);
 		if ($this->db->affected_rows() > 0) {
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Berhasil untuk membatalkan pesanan driver ini!');
 			redirect('penumpang');
 		} else {
@@ -297,8 +348,18 @@ class PenumpangController extends CI_Controller {
 			'is_active' => '0'
 		);
 
+		$id_notifikasi = substr(md5(rand()),0,5);
+		$data_notifikasi = [
+			'id' => $id_notifikasi,
+			'id_user' => $this->session->userdata('id'),
+			'title' => "Transaksi Selesai",
+			'message' => "Kamu telah menyelesaikan transaksi bersama driver. Terima kasih telah menggunakan layanan Goncengan!",
+			'type' => $this->session->userdata('role')
+		];
+
 		$this->Penumpang_M->change_status_pencarian($id, $data);
 		if ($this->db->affected_rows() > 0) {
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Transaksi telah selesai! Terimakasih!');
 			redirect('penumpang');
 		} else {

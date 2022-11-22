@@ -20,7 +20,7 @@
                   <small class="text-danger"><?=form_error('lokasi_tujuan')?></small>
                 </div> -->
                 <div class="mb-3">
-                  <label class="form-label">Lokasi Kamu <small class="text-danger">(Pastikan kamu telah memilih Fakultas tujuan terlebih dahulu)</small></label><br>
+                  <label class="form-label">Lokasi Kamu <small class="text-danger">(Pastikan kamu telah memilih Fakultas tujuan terlebih dahulu, lalu klik marker pada map untuk menentukan lokasi kamu)</small></label><br>
                   <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br>
                   <input type="hidden" class="form-control rounded-3" name="lokasi_tujuan" id="lokasi_user" readonly>
                   <small class="text-danger"><?=form_error('lokasi_tujuan')?></small>
@@ -35,7 +35,7 @@
                   <input type="time" class="form-control rounded-3" name="waktu_pulang" value="<?=set_value('waktu_pulang')?>">
                   <small class="text-danger"><?=form_error('waktu_pulang')?></small>
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                   <label class="form-label">Gender Penumpang</label>
                   <select class="form-control rounded-3" name="gender">
                     <option value="">-- Pilih Gender Penumpang --</option>
@@ -45,13 +45,7 @@
                   </select>
                   <small class="text-danger"><?=form_error('gender')?></small>
                 </div>
-                <div class="mb-4">
-                  <label class="form-label">Total Harga</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text rounded-3 rounded-end-0">Rp</span>
-                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly>
-                  </div>
-                </div>
+                <input type="hidden" name="harga" id="harga" readonly>
                 <input type="hidden" id="type" name="type" value="">
                 <div class="d-flex align-items-center justify-content-center gap-2">
                   <input type="submit" class="btn btn-ecomm rounded-3 btn-warning flex-fill" id="to-angle" value="Angel Driver" name="types">

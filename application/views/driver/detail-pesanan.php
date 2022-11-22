@@ -26,6 +26,13 @@
                   <label class="form-label">Catatan</label>
                   <textarea class="form-control rounded-3" rows="4" cols="4" readonly><?=ucfirst($pesanan['catatan'])?></textarea>
                 </div>
+                <div class="mb-4">
+                  <label class="form-label">Total Harga</label>
+                  <div class="input-group">
+                    <span class="input-group-text rounded-3 rounded-end-0">Rp</span>
+                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly value="<?=$pesanan['harga']?>">
+                  </div>
+                </div>
                 <!-- <div class="mb-3">
                   <label class="form-label">Predikat</label><br>
                   <span class="badge text-bg-warning">Ramah</span>
