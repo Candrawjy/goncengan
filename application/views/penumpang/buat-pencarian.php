@@ -15,7 +15,7 @@
                   <small class="text-danger"><?=form_error('lokasi_akhir')?></small>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Lokasi Kamu <small class="text-danger">(Pastikan kamu telah memilih Fakultas tujuan terlebih dahulu)</small></label><br>
+                  <label class="form-label">Lokasi Kamu <small class="text-danger">(Pastikan kamu telah memilih Fakultas tujuan terlebih dahulu, lalu klik marker pada map untuk menentukan lokasi kamu)</small></label><br>
                   <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br>
                   <input type="hidden" class="form-control rounded-3" name="lokasi_user" id="lokasi_user" readonly>
                   <small class="text-danger"><?=form_error('lokasi_user')?></small>
@@ -31,7 +31,14 @@
                   <input type="time" class="form-control rounded-3" name="jam_pulang" value="<?=set_value('jam_pulang')?>">
                   <small class="text-danger"><?=form_error('jam_pulang')?></small>
                 </div>
-                <input type="hidden" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly>
+                <div class="mb-4">
+                  <label class="form-label">Total Harga</label>
+                  <div class="input-group">
+                    <span class="input-group-text rounded-3 rounded-end-0">Rp</span>
+                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly>
+                  </div>
+                  <small class="text-danger"><?=form_error('harga')?></small>
+                </div>
                 <div class="mb-3">
                   <label class="form-label">Catatan</label><br>
                   <textarea class="form-control rounded-3" rows="4" cols="4" name="catatan"></textarea>

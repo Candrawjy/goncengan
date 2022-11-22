@@ -58,7 +58,7 @@
                         <center>
                           <img src="<?=base_url('')?>assets/images/illust/business.svg" style="width: 80% !important;" class="p-5" alt="">
                         </center>
-                        <p class="h6">Kamu menemukan <b>seorang driver bisnis</b> yang mau mengantarmu dengan imbalan sebesar Rp<?=number_format($data_driver->harga)?></p>
+                        <p class="h6">Kamu menemukan <b>seorang driver bisnis</b> yang mau mengantarmu dengan imbalan sebesar Rp<?=number_format($data->harga)?></p>
                       <?php } ?>
                       <div class="container mt-3">
                         <?php if($data->is_acc == '0') { ?>
@@ -75,7 +75,7 @@
                           <b>Yey! <?=ucfirst($data_driver->nama)?> menerima pesananmu!</b>
                         </div>
                         <p>Sekarang kamu bisa berkomunikasi dengannya! Jangan lupa hargai dia yang telah menerimamu!</p>
-                        <a href="https://wa.me/<?=$data_driver->no_wa?>?text=Halo,%20<?=$data_driver->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
+                        <a href="https://wa.me/62<?=$data_driver->no_wa?>?text=Halo,%20<?=$data_driver->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
                       </div>
                     </div>
                   <?php } ?>
@@ -114,7 +114,7 @@
                         <h6><?=ucfirst($data_driver->nama)?></h6>
                         <h6><?=ucfirst($data_driver->nim)?></h6>
                         <h6><?php if($data_driver->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data_driver->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></h6>
-                        <h6>Total Harga : Rp<?=ucfirst($data_driver->harga)?></h6>
+                        <h6>Total Harga : Rp<?=number_format($data->harga)?></h6>
                       </label>
                     </div>
                   </div>
@@ -146,7 +146,7 @@
                           <b>Yey! <?=ucfirst($data_driver->nama)?> menerima pesananmu!</b>
                         </div>
                         <p>Sekarang kamu bisa berkomunikasi dengannya! Jangan lupa hargai dia yang telah menerimamu!</p>
-                        <a href="https://wa.me/<?=$data_driver->no_wa?>?text=Halo,%20<?=$data_driver->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
+                        <a href="https://wa.me/62<?=$data_driver->no_wa?>?text=Halo,%20<?=$data_driver->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
                       </div>
                     </div>
                   <?php } ?>
@@ -275,6 +275,7 @@
                         <!-- <span>Lokasi Kamu : <b><?=ucfirst($data->lokasi_user)?></b></span><br> -->
                         <span>Fakultas Tujuan : <b><?php if($data->lokasi_akhir == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_akhir == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
                         <span>Waktu Operasional : <b><?= date('H:i', strtotime($data->jam_berangkat)) ?> - <?= date('H:i', strtotime($data->jam_pulang)) ?> WIB</b></span><br>
+                        <span>Total Harga : <b>Rp<?=number_format($data->harga)?></b></span>
                       </label>
                     </div>
                     <div class="vr"></div>

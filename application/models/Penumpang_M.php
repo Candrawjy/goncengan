@@ -33,16 +33,20 @@ class Penumpang_M extends CI_Model {
         if (!empty($post['lokasi_user'])) {
             $params['lokasi_user'] = $post['lokasi_user'];
         }
-
         if (!empty($post['lokasi_akhir'])) {
             $params['lokasi_akhir'] = $post['lokasi_akhir'];
         }
-
         if (!empty($post['jam_berangkat'])) {
             $params['jam_berangkat'] = $post['jam_berangkat'];
         }
         if (!empty($post['jam_pulang'])) {
             $params['jam_pulang'] = $post['jam_pulang'];
+        }
+        if (!empty($post['harga'])) {
+            $params['harga'] = $post['harga'];
+        }
+        if (!empty($post['catatan'])) {
+            $params['catatan'] = $post['catatan'];
         }
 
         $this->db->where('id', $post['id']);

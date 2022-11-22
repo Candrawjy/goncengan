@@ -20,7 +20,7 @@
                     <label class="form-check-label">
                       <h6><?=ucfirst($penawaran->nama)?></h6>
                       <h6><?=ucfirst($penawaran->nim)?></h6>
-                      <h6>Tarif : Rp<?=number_format($penawaran->harga)?></h6>
+                      <!-- <h6>Tarif : Rp<?=number_format($penawaran->harga)?></h6> -->
                     </label>
                   </div>
                 </div>

@@ -34,6 +34,15 @@ class DriverController extends CI_Controller {
 		$this->session->set_userdata('role', 'driver');
 		$this->Driver_M->ModeDriver($where, $data);
 		if ($this->db->affected_rows() > 0) {
+			$id_notifikasi = substr(md5(rand()),0,5);
+			$data_notifikasi = [
+				'id' => $id_notifikasi,
+				'id_user' => $this->session->userdata('id'),
+				'title' => "Masuk Mode Driver",
+				'message' => "Kamu memasuki mode driver!",
+				'type' => $this->session->userdata('role')
+			];
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Anda sedang memasuki mode driver');
 			redirect('driver');
 		} else {
@@ -44,22 +53,37 @@ class DriverController extends CI_Controller {
 
 	public function keluar_mode_driver()
 	{
-		$id = $this->session->userdata('id');
-
-		$data = array(
-			'id' => $id,
-			'role' => NULL,
-		);
-
-		$where = $id;
-		$this->session->unset_userdata('role');
-		$this->Driver_M->ModeDriver($where, $data);
-		if ($this->db->affected_rows() > 0) {
-			$this->session->set_flashdata('success', 'Berhasil keluar dari mode driver');
-			redirect('/');
+		$iklan_aktif = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->order_by('penawaran.created_at','DESC')->where('penawaran.id_user', $this->session->userdata('id'))->where('penawaran.is_active', '1')->limit(1, 'DESC')->get()->num_rows();
+		if($iklan_aktif == 1) {
+			$this->session->set_flashdata('error', 'Anda sedang memiliki penawaran yang aktif. Batalkan terlebih dahulu untuk mengubah mode!');
+			echo "<script> history.go(-1); </script>";
 		} else {
-			$this->session->set_flashdata('error', 'Gagal untuk keluar dari mode driver.');
-			redirect('/');
+			$id = $this->session->userdata('id');
+
+			$data = array(
+				'id' => $id,
+				'role' => NULL,
+			);
+
+			$where = $id;
+			$id_notifikasi = substr(md5(rand()),0,5);
+			$data_notifikasi = [
+				'id' => $id_notifikasi,
+				'id_user' => $this->session->userdata('id'),
+				'title' => "Keluar Mode Driver",
+				'message' => "Kamu keluar dari mode driver!",
+				'type' => $this->session->userdata('role')
+			];
+			$this->db->insert('notifikasi', $data_notifikasi);
+			$this->session->unset_userdata('role');
+			$this->Driver_M->ModeDriver($where, $data);
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('success', 'Berhasil keluar dari mode driver');
+				redirect('/');
+			} else {
+				$this->session->set_flashdata('error', 'Gagal untuk keluar dari mode driver.');
+				redirect('/');
+			}
 		}
 	}
 
@@ -117,7 +141,8 @@ class DriverController extends CI_Controller {
 							'waktu_pulang' => $this->input->post('waktu_pulang'),
 							'gender' => $this->input->post('gender'),
 							'type' => $this->input->post('type'),
-							'harga' => $this->input->post('harga'),
+							// 'harga' => $this->input->post('harga'),
+							'harga' => "",
 						];
 					}
 
@@ -220,9 +245,18 @@ class DriverController extends CI_Controller {
 		$data = array(
 			'is_acc' => '1',
 		);
+		$id_notifikasi = substr(md5(rand()),0,5);
+		$data_notifikasi = [
+			'id' => $id_notifikasi,
+			'id_user' => $this->session->userdata('id'),
+			'title' => "Menerima Pesanan",
+			'message' => "Kamu menerima sebuah pesanan!",
+			'type' => $this->session->userdata('role')
+		];
 
 		$this->Driver_M->ubah_pesanan($id, $data);
 		if ($this->db->affected_rows() > 0) {
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Berhasil untuk menerima pesanan! Silakan hubungi penumpang dan jangan biarkan mereka menunggu!');
 			redirect('driver');
 		} else {
@@ -235,6 +269,7 @@ class DriverController extends CI_Controller {
 	{
 		$data_penawaran = array(
 			'is_booked' => '0',
+			'is_active' => '0',
 		);
 
 		$data_pesanan = array(
@@ -245,11 +280,21 @@ class DriverController extends CI_Controller {
 			'is_banned' => '1',
 		);
 
+		$id_notifikasi = substr(md5(rand()),0,5);
+		$data_notifikasi = [
+			'id' => $id_notifikasi,
+			'id_user' => $this->session->userdata('id'),
+			'title' => "Menolak Pesanan",
+			'message' => "Kamu telah menolak pesanan. Oleh karena itu, akun kamu kami bekukan selama 3 hari!",
+			'type' => $this->session->userdata('role')
+		];
+
 		$this->Driver_M->change_status_penawaran($id, $data_penawaran);
 		$this->Driver_M->selesai_pesanan($id, $data_pesanan);
 		$this->Driver_M->tolak_pesanan_user($id, $data_user);
 		$this->session->set_userdata('is_banned', '1');
 		if ($this->db->affected_rows() > 0) {
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Berhasil untuk menolak pesanan ini!');
 			redirect('driver');
 		} else {
@@ -268,9 +313,19 @@ class DriverController extends CI_Controller {
 			'is_active' => '0',
 		);
 
+		$id_notifikasi = substr(md5(rand()),0,5);
+		$data_notifikasi = [
+			'id' => $id_notifikasi,
+			'id_user' => $this->session->userdata('id'),
+			'title' => "Menyelesaikan Pesanan",
+			'message' => "Kamu telah menyelesaikan sebuah pesanan!",
+			'type' => $this->session->userdata('role')
+		];
+
 		$this->Driver_M->selesai_pesanan($id, $data);
 		$this->Driver_M->change_status_penawaran($id, $data_penawaran);
 		if ($this->db->affected_rows() > 0) {
+			$this->db->insert('notifikasi', $data_notifikasi);
 			$this->session->set_flashdata('success', 'Transaksi telah selesai! Terimakasih atas jasamu karena telah membantu mahasiswa Indonesia untuk berangkat/pulang dari kampus tepat waktu!');
 			redirect('driver');
 		} else {
