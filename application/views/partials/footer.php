@@ -59,9 +59,9 @@
             var radius = (e.accuracy / 2).toFixed(1);
 
             if (distance < 3.00 && distance != 0.00) {
-                var tarif = 5000;
+                var tarif = 6000;
             } else if (distance > 3.00){
-                var tarif = ((5000 * 1) + (distance * 1300)).toFixed(0);
+                var tarif = ((6000 * 1) + (distance * 1500)).toFixed(0);
             } else {
                 var tarif = 0;
             }

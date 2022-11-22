@@ -22,7 +22,7 @@
                   <!-- <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user" id="lokasi_user"><?=set_value('lokasi_user')?></textarea> -->
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Waktu Berangkat</label>
+                  <label class="form-label">Target Waktu Tiba di Kampus</label>
                   <input type="time" class="form-control rounded-3" name="jam_berangkat" value="<?=set_value('jam_berangkat')?>">
                   <small class="text-danger"><?=form_error('jam_berangkat')?></small>
                 </div>
