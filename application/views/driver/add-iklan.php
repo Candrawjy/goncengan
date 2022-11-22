@@ -26,7 +26,7 @@
                   <small class="text-danger"><?=form_error('lokasi_tujuan')?></small>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Waktu Berangkat</label>
+                  <label class="form-label">Target Waktu Tiba di Kampus</label>
                   <input type="time" class="form-control rounded-3" name="waktu_berangkat" value="<?=set_value('waktu_berangkat')?>">
                   <small class="text-danger"><?=form_error('waktu_berangkat')?></small>
                 </div>
