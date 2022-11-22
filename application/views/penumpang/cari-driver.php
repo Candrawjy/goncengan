@@ -3,7 +3,8 @@
         <?php foreach ($pesanan as $data) : ?>
           <?php 
             $where = "gender='$data->jenis_kelamin' OR gender='keduanya'";
-            $penawaran = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->like('lokasi_awal', $data->lokasi_akhir)->like('lokasi_tujuan', $data->lokasi_user)->where($where)->where('penawaran.is_active', '1')->where('penawaran.is_booked', '0')->order_by('penawaran.created_at','ASC')->get()->result(); ?>
+            $jk = array($data->jenis_kelamin, 'keduanya');
+            $penawaran = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->where('penawaran.is_active', '1')->where('penawaran.is_booked', '0')->where('penawaran.type_waktu_penawaran', $data->type_waktu)->where('lokasi_awal', $data->lokasi_akhir)->like('lokasi_tujuan', $data->lokasi_user)->where_in('penawaran.gender', $jk)->order_by('penawaran.created_at','ASC')->get()->result(); ?>
           <?php foreach ($penawaran as $penawaran) : ?>
             <div class="card rounded-3 mb-3">
               <div class="card-body">
@@ -20,6 +21,7 @@
                     <label class="form-check-label">
                       <h6><?=ucfirst($penawaran->nama)?></h6>
                       <h6><?=ucfirst($penawaran->nim)?></h6>
+                      <h6>Waktu <?php if($penawaran->waktu_berangkat != NULL){echo "Berangkat";}else{echo "Pulang";}?> : <b><?= $penawaran->waktu_berangkat ?> <?=$penawaran->waktu_pulang ?> WIB</b></h6><br>
                       <!-- <h6>Tarif : Rp<?=number_format($penawaran->harga)?></h6> -->
                     </label>
                   </div>

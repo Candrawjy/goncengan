@@ -24,7 +24,7 @@
                   <center>
                     <img src="<?=base_url('')?>assets/images/illust/angel.svg" style="width: 80% !important;" class="p-5" alt="">
                   </center>
-                  <p class="h6">Yey! Kamu menemukan <b>seorang malaikat</b> yang mau mengantarmu dengan tulus!</p>
+                  <p class="h6">Yey! Kamu menemukan <b>seorang malaikat</b> yang mau mengantarmu.</p>
                 <?php } else { ?>
                   <center>
                     <img src="<?=base_url('')?>assets/images/illust/business.svg" style="width: 80% !important;" class="p-5" alt="">

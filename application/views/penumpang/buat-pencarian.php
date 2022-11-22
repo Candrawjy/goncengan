@@ -22,6 +22,11 @@
                   <!-- <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user" id="lokasi_user"><?=set_value('lokasi_user')?></textarea> -->
                 </div>
                 <div class="mb-3">
+                  <label class="form-label">Waktu</label>
+                  <input type="time" class="form-control rounded-3" name="waktu" value="<?=set_value('waktu')?>">
+                  <small class="text-danger"><?=form_error('waktu')?></small>
+                </div>
+                <!-- <div class="mb-3">
                   <label class="form-label">Target Waktu Tiba di Kampus</label>
                   <input type="time" class="form-control rounded-3" name="jam_berangkat" value="<?=set_value('jam_berangkat')?>">
                   <small class="text-danger"><?=form_error('jam_berangkat')?></small>
@@ -30,7 +35,7 @@
                   <label class="form-label">Waktu Pulang</label>
                   <input type="time" class="form-control rounded-3" name="jam_pulang" value="<?=set_value('jam_pulang')?>">
                   <small class="text-danger"><?=form_error('jam_pulang')?></small>
-                </div>
+                </div> -->
                 <div class="mb-4">
                   <label class="form-label">Total Harga</label>
                   <div class="input-group">
@@ -43,8 +48,13 @@
                   <label class="form-label">Catatan</label><br>
                   <textarea class="form-control rounded-3" rows="4" cols="4" name="catatan"></textarea>
                 </div>
-                <div class="d-flex align-items-center justify-content-center gap-2">
+                <!-- <div class="d-flex align-items-center justify-content-center gap-2">
                   <input type="submit" class="btn btn-ecomm rounded-3 btn-primary flex-fill" id="cari-driver" value="Buat Pencarian" name="types">
+                </div> -->
+                <input type="hidden" id="type_waktu" name="type_waktu" value="">
+                <div class="d-flex align-items-center justify-content-center gap-2">
+                  <input type="submit" class="btn btn-ecomm rounded-3 btn-warning flex-fill" id="to-berangkat" value="Berangkat">
+                  <input type="submit" class="btn btn-ecomm rounded-3 btn-primary flex-fill" id="to-pulang" value="Pulang">
                 </div>
               </div>
             </div>

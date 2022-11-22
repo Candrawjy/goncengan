@@ -67,6 +67,7 @@ class MainController extends CI_Controller {
 	public function profil()
 	{
 		$data['title'] = "Profil";
+		$data['balance'] = $this->Main_M->getBalance();
 
 		$this->load->view('partials/header', $data);
 		$this->load->view('partials/header-main');

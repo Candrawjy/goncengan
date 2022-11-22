@@ -26,13 +26,15 @@
                   <label class="form-label">Catatan</label>
                   <textarea class="form-control rounded-3" rows="4" cols="4" readonly><?=ucfirst($pesanan['catatan'])?></textarea>
                 </div>
+                <?php if($pesanan['type'] == 'bisnis') { ?>
                 <div class="mb-4">
                   <label class="form-label">Total Harga</label>
                   <div class="input-group">
                     <span class="input-group-text rounded-3 rounded-end-0">Rp</span>
-                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly value="<?=$pesanan['harga']?>">
+                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly value="<?=$pesanan['harga_pesanan']?>">
                   </div>
                 </div>
+                <?php } ?>
                 <!-- <div class="mb-3">
                   <label class="form-label">Predikat</label><br>
                   <span class="badge text-bg-warning">Ramah</span>
@@ -57,6 +59,6 @@
         </div> -->
         <div class="page-footer fixed-bottom border-top d-flex align-items-center justify-content-center gap-3">
           <a href="<?=site_url('tolak-pesanan/'.$pesanan['id_penawaran'])?>" id="tolak-pesanan" class="btn btn-ecomm rounded-3 btn-danger flex-fill">Tolak</a>
-          <a href="<?=site_url('terima-pesanan/'.$pesanan['id'])?>" id="terima-pesanan" class="btn btn-ecomm rounded-3 btn-success flex-fill">Ambil</a>
+          <a href="<?=site_url('terima-pesanan/'.$pesanan['id_pesanan'])?>" id="terima-pesanan" class="btn btn-ecomm rounded-3 btn-success flex-fill">Ambil</a>
         </div>
       </div>
