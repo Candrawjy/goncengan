@@ -22,6 +22,11 @@
                   <small class="text-danger"><?=form_error('lokasi_user')?></small>
                 </div>
                 <div class="mb-3">
+                  <label class="form-label">Waktu <small class="text-danger">(<?=$pesanan['type_waktu']?>)</small></label>
+                  <input type="time" class="form-control rounded-3" name="waktu" value="<?=$pesanan['waktu']?>">
+                  <small class="text-danger"><?=form_error('waktu')?></small>
+                </div>
+                <!-- <div class="mb-3">
                   <label class="form-label">Waktu Berangkat</label>
                   <input type="time" class="form-control rounded-3" name="jam_berangkat" value="<?=$pesanan['jam_berangkat']?>">
                   <small class="text-danger"><?=form_error('jam_berangkat')?></small>
@@ -30,7 +35,7 @@
                   <label class="form-label">Waktu Pulang</label>
                   <input type="time" class="form-control rounded-3" name="jam_pulang" value="<?=$pesanan['jam_pulang']?>">
                   <small class="text-danger"><?=form_error('jam_pulang')?></small>
-                </div>
+                </div> -->
                 <div class="mb-4">
                   <label class="form-label">Total Harga</label>
                   <div class="input-group">
@@ -39,6 +44,7 @@
                   </div>
                   <small class="text-danger"><?=form_error('harga')?></small>
                 </div>
+                <input type="hidden" id="type_waktu" name="type_waktu" value="<?=$pesanan['type_waktu']?>">
                 <div class="mb-3">
                   <label class="form-label">Catatan</label><br>
                   <textarea class="form-control rounded-3" rows="4" cols="4" name="catatan"><?=$pesanan['catatan']?></textarea>

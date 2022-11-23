@@ -22,7 +22,7 @@
                   <!-- <textarea class="form-control rounded-3" rows="4" cols="4" name="lokasi_user" id="lokasi_user"><?=set_value('lokasi_user')?></textarea> -->
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Waktu</label>
+                  <label class="form-label">Waktu <small class="text-danger">(Tiba di kampus/kepulangan)</small></label>
                   <input type="time" class="form-control rounded-3" name="waktu" value="<?=set_value('waktu')?>">
                   <small class="text-danger"><?=form_error('waktu')?></small>
                 </div>

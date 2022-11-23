@@ -231,6 +231,10 @@ class PenumpangController extends CI_Controller {
 			$this->form_validation->set_rules('harga', 'Total Harga', 'required');
 		}
 
+		if ($this->input->post('waktu')) {
+			$this->form_validation->set_rules('waktu', 'Waktu', 'required');
+		}
+
 		$this->form_validation->set_message('required', '%s masih kosong, harap diisi');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block text-danger">', '</span>');
