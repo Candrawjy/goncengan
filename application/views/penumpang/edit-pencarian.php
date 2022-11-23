@@ -7,7 +7,7 @@
                 <div class="my-3 border-bottom"></div>
                 <input type="hidden" class="form-control rounded-3" name="id" value="<?=$pesanan['id']?>">
                 <div class="mb-3">
-                  <label class="form-label">Fakultas Tujuan</label>
+                  <label class="form-label">Fakultas Tujuan/Jemput</label>
                   <select name="lokasi_akhir" class="form-control rounded-3" id="lokasi_akhir">
                     <option value="<?=$pesanan['lokasi_akhir']?>">-- Tidak ada perubahan --</option>
                     <option value="sekolah-bisnis">Sekolah Bisnis IPB University</option>
@@ -16,7 +16,7 @@
                   <small class="text-danger"><?=form_error('lokasi_akhir')?></small>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Lokasi Kamu <small class="text-danger">(Pastikan kamu telah memilih Fakultas tujuan terlebih dahulu, lalu klik marker pada map untuk menentukan lokasi kamu)</small></label><br>
+                  <label class="form-label">Lokasi Jemput/Tujuan Pulang <small class="text-danger">(Pastikan kamu telah memilih Fakultas tujuan terlebih dahulu, lalu klik marker pada map untuk menentukan lokasi)</label><br>
                   <div id="map" style="border-radius: 8px; width: 100%; height: 400px"></div><br>
                   <input type="hidden" class="form-control rounded-3" name="lokasi_user" id="lokasi_user" readonly value="<?=$pesanan['lokasi_user']?>">
                   <small class="text-danger"><?=form_error('lokasi_user')?></small>
