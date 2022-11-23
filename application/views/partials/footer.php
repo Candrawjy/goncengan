@@ -24,7 +24,7 @@
         });
         basemap.addTo(map);
 
-        L.control.locate({
+        var lc = L.control.locate({
             position: 'topleft',
             showCompass: true,
             showPopup: false,
@@ -70,22 +70,57 @@
             document.getElementById("lokasi_user").value = e.latitude + "," + e.longitude;
             document.getElementById("harga").value = tarif;
 
-            locationMarker = L.marker(e.latlng);
-            locationMarker.addTo(map);
-            locationMarker.bindPopup("<p class='text-center'> Anda berada <b>" + distance + " km</b><br>dari " + lokasi_fakultas + ".</p>");
-            locationMarker.openPopup();
-            console.log("Your coordinate is: Lat: " + e.latitude + " Long: " + e.longitude + " Accuracy: " + e.accuracy + " Distance: " + distance + " Cost: " + tarif)
+            var locationMarker;
+            map.on('click', function(e) {
+                if (locationMarker != null) {
+                    map.removeLayer(locationMarker);
+                }
 
-            var latlongline = [e.latlng,fakultas];
-            var polyline = L.polyline(latlongline, {
-                color: 'transparent',
-                weight: 5,
-                opacity: 0.7,
+                var nama_fakultas = document.getElementById("lokasi_akhir");
+                var lokasi_fakultas = nama_fakultas.value;
+                if(lokasi_fakultas == 'sekolah-bisnis') {
+                    var lokasi_fakultas = "Sekolah Bisnis";
+                    var fakultas = [-6.586674786040669, 106.80608902528489];
+                } else if(lokasi_fakultas == 'sekolah-vokasi') {
+                    var lokasi_fakultas = "Sekolah Vokasi";
+                    var fakultas = [-6.589090625741272, 106.80609333877949];
+                } else {
+                    var fakultas = [e.latitude, e.longitude];
+                }
+
+                var distance = (L.latLng(e.latlng).distanceTo(fakultas) / 1000).toFixed(2);
+
+                var radius = (e.accuracy / 2).toFixed(1);
+
+                if (distance < 3.00 && distance != 0.00) {
+                    var tarif = 6000;
+                } else if (distance > 3.00){
+                    var tarif = ((6000 * 1) + (distance * 1500)).toFixed(0);
+                } else {
+                    var tarif = 0;
+                }
+
+                document.getElementById("lokasi_user").value = e.latitude + "," + e.longitude;
+                document.getElementById("harga").value = tarif;
+
+                locationMarker = new L.marker(e.latlng);
+                locationMarker.bindPopup("<p class='text-center'> Anda berada <b>" + distance + " km</b><br>dari " + lokasi_fakultas + ".</p>");
+                locationMarker.openPopup();
+                locationMarker.addTo(map);
+                console.log("Your coordinate is: Lat: " + e.latlng['lat'] + " Long: " + e.latlng['lng'] + " Accuracy: " + e.accuracy + " Distance: " + distance + " Cost: " + tarif);
             });
-            polyline.addTo(map);
-        }
+            console.log("Your coordinate is: Lat: " + e.latlng['lat'] + " Long: " + e.latlng['lng'] + " Accuracy: " + e.accuracy + " Distance: " + distance + " Cost: " + tarif);
 
+            // var latlongline = [e.latlng,fakultas];
+            // var polyline = L.polyline(latlongline, {
+            //     color: 'transparent',
+            //     weight: 5,
+            //     opacity: 0.7,
+            // });
+            // polyline.addTo(map);
+        }
         map.on('locationfound', onLocationFound);
+        lc.stopFollowing();
     </script>
     <script type="text/javascript">
         function opsi(value){

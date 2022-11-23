@@ -48,6 +48,9 @@ class Penumpang_M extends CI_Model {
         if (!empty($post['catatan'])) {
             $params['catatan'] = $post['catatan'];
         }
+        if (!empty($post['waktu'])) {
+            $params['waktu'] = $post['waktu'];
+        }
 
         $this->db->where('id', $post['id']);
         $this->db->update('pesanan', $params);
