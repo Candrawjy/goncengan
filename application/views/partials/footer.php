@@ -28,9 +28,9 @@
             position: 'topleft',
             showCompass: true,
             showPopup: false,
-            locateOptions: {
-                enableHighAccuracy: true
-            },
+            // locateOptions: {
+            //     enableHighAccuracy: true
+            // },
             strings: {
                 title: "Tentukan lokasi Saya"
             }
