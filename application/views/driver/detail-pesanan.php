@@ -10,11 +10,11 @@
                   <input type="text" class="form-control rounded-3" value="<?=ucfirst($pesanan['nama'])?>" readonly>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Fakultas Tujuan</label>
+                  <label class="form-label">Fakultas Tujuan/Jemput</label>
                   <input type="text" class="form-control rounded-3" value="<?php if($pesanan['lokasi_akhir'] == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($pesanan['lokasi_akhir'] == "sekolah-vokasi"){echo "Sekolah Vokasi";}?>" readonly>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Lokasi Jemput</label><br>
+                  <label class="form-label">Lokasi Jemput/Tujuan Pulang</label><br>
                   <!-- <textarea class="form-control rounded-3" rows="4" cols="4" readonly><?=ucfirst($pesanan['lokasi_user'])?></textarea> -->
                   <a href="https://www.google.com/maps/search/?api=1&query=<?=$pesanan['lokasi_user']?>" class="btn btn-sm btn-primary mt-2" target="_blank">Lihat Lokasi</a>
                 </div>

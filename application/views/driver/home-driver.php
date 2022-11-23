@@ -137,7 +137,7 @@
                     <div class="address-info">
                       <label class="form-check-label" for="flexRadioDefaultAddress1">
                         <span class="fw-bold mb-0 h6"><?=ucfirst($data->nama)?></span><br>
-                        <span>Lokasi Awal : <b><?php if($data->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
+                        <span>Lokasi Jemput/Tujuan Pulang : <b><?php if($data->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
                         <!-- <span>Lokasi Tujuan : <b><?=ucfirst($data->lokasi_tujuan)?></b></span><br> -->
                         <span>Waktu <?php if($data->waktu_berangkat != NULL){echo "Berangkat";}else{echo "Pulang";}?> : <b><?= $data->waktu_berangkat ?> <?=$data->waktu_pulang ?> WIB</b></span><br>
                         <span>Gender Penumpang : <b><?=ucfirst($data->gender)?></b></span><br>

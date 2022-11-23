@@ -277,7 +277,7 @@
                     <div class="address-info">
                       <label class="form-check-label" for="flexRadioDefaultAddress1">
                         <!-- <span>Lokasi Kamu : <b><?=ucfirst($data->lokasi_user)?></b></span><br> -->
-                        <span>Fakultas Tujuan : <b><?php if($data->lokasi_akhir == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_akhir == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
+                        <span>Fakultas Tujuan/Jemput : <b><?php if($data->lokasi_akhir == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data->lokasi_akhir == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></b></span><br>
                         <span>Waktu <?=ucfirst($data->type_waktu)?> : <b><?= date('H:i', strtotime($data->waktu)) ?> WIB</b></span><br>
                         <span>Total Harga : <b>Rp<?=number_format($data->harga)?></b></span>
                       </label>
