@@ -27,13 +27,14 @@
         var lc = L.control.locate({
             position: 'topleft',
             showCompass: true,
-            showPopup: false,
+            showPopup: true,
             locateOptions: {
                 enableHighAccuracy: true
             },
             strings: {
                 title: "Tentukan lokasi Saya"
-            }
+            },
+            flyTo: true,
         }).addTo(map);
 
         // L.Control.geocoder({
@@ -42,6 +43,15 @@
         // }).addTo(map);
 
         function onLocationFound(e) {
+            var locationMarker;
+            if (locationMarker != null) {
+                map.removeLayer(locationMarker);
+            }
+            locationMarker = L.marker(e.latlng);
+            locationMarker.addTo(map);
+            locationMarker.bindPopup("<p class='text-center'>Ini adalah lokasi Anda.</p>");
+            locationMarker.openPopup();
+
             var nama_fakultas = document.getElementById("lokasi_akhir");
             var lokasi_fakultas = nama_fakultas.value;
             if(lokasi_fakultas == 'sekolah-bisnis') {
@@ -70,7 +80,6 @@
             document.getElementById("lokasi_user").value = e.latitude + "," + e.longitude;
             document.getElementById("harga").value = tarif;
 
-            var locationMarker;
             map.on('click', function(e) {
                 if (locationMarker != null) {
                     map.removeLayer(locationMarker);
@@ -104,12 +113,13 @@
                 document.getElementById("harga").value = tarif;
 
                 locationMarker = new L.marker(e.latlng);
-                locationMarker.bindPopup("<p class='text-center'> Anda berada <b>" + distance + " km</b><br>dari " + lokasi_fakultas + ".</p>");
+                locationMarker.bindPopup("<p class='text-center'> Lokasi yang ditandai <br> berada <b>" + distance + " km</b><br>dari " + lokasi_fakultas + ".</p>");
                 locationMarker.openPopup();
                 locationMarker.addTo(map);
                 console.log("Your coordinate is: Lat: " + e.latlng['lat'] + " Long: " + e.latlng['lng'] + " Accuracy: " + e.accuracy + " Distance: " + distance + " Cost: " + tarif);
             });
             console.log("Your coordinate is: Lat: " + e.latlng['lat'] + " Long: " + e.latlng['lng'] + " Accuracy: " + e.accuracy + " Distance: " + distance + " Cost: " + tarif);
+                lc.stop();
 
             // var latlongline = [e.latlng,fakultas];
             // var polyline = L.polyline(latlongline, {
@@ -120,7 +130,13 @@
             // polyline.addTo(map);
         }
         map.on('locationfound', onLocationFound);
-        lc.stopFollowing();
+        // lc.stop();
+        function onLocationError(e) {
+            alert(e.message);
+        }
+        // map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+        map.locate({setView: true, maxZoom: 50});
     </script>
     <script type="text/javascript">
         function opsi(value){
