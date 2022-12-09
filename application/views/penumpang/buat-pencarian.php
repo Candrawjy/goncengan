@@ -40,7 +40,7 @@
                   <label class="form-label">Total Harga</label>
                   <div class="input-group">
                     <span class="input-group-text rounded-3 rounded-end-0">Rp</span>
-                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly>
+                    <input type="number" class="form-control rounded-3 rounded-start-0" placeholder="0" name="harga" id="harga" readonly min="5000">
                   </div>
                   <small class="text-danger"><?=form_error('harga')?></small>
                 </div>

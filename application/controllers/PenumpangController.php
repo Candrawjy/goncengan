@@ -17,6 +17,7 @@ class PenumpangController extends CI_Controller {
 			}
 		}
 		$this->load->model('Penumpang_M');
+		$this->load->model('Main_M');
 	}
 
 	public function mode_penumpang()
@@ -171,6 +172,7 @@ class PenumpangController extends CI_Controller {
 			$data['jml_pesanan_acc'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_acc', '1')->where('pesanan.id_penawaran !=', NULL)->where('pesanan.is_done', '0')->limit(1, 'DESC')->get()->num_rows();
 			$data['jml_pesanan_done'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_done', '1')->limit(1, 'DESC')->get()->num_rows();
 			$data['jml_pesanan_tolak'] = $this->db->select('user.*, pesanan.*')->from('pesanan')->join('user', 'user.id = pesanan.id_user')->order_by('pesanan.created_at','DESC')->where('pesanan.id_user', $this->session->userdata('id'))->where('pesanan.is_active', '1')->where('pesanan.is_done', '0')->where('pesanan.is_acc', '2')->limit(1, 'DESC')->get()->num_rows();
+			$data['banner'] = $this->Main_M->getBanner()->result();
 
 			$this->load->view('partials/header', $data);
 			$this->load->view('partials/header-home');

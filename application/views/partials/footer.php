@@ -3,7 +3,7 @@
     <script src="<?=base_url('')?>assets/js/bootstrap.bundle.min.js"></script>
     <script src="<?=base_url('')?>assets/js/jquery.min.js"></script>
     <script src="<?=base_url('')?>assets/plugins/sweetalert/sweetalert2.min.js"></script>
-    <script src="<?=base_url('')?>assets/js/custom.js"></script>
+    <script src="<?=base_url('')?>assets/js/custom2.js"></script>
 
     <script src="<?=base_url('')?>assets/js/cookies-theme-switcher.js"></script>
     <script src="<?=base_url('')?>assets/plugins/metismenu/metisMenu.min.js"></script>
