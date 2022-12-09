@@ -2,24 +2,11 @@
         <h2 class="text-center">Selamat datang</h2>
         <p class="text-center text-muted">Dapatkan kemudahan pergi ke kampus bersama Goncengan</p>
         <div class="banner-slider">
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
+          <?php foreach ($banner as $data_banner) : ?>
+            <div class="banner-item">
+              <a href="javascript:;"><img src="https://admin.goncengan.com/assets/images/banner/<?=$data_banner->foto_banner?>" class="img-fluid rounded-3" alt=""></a>
+            </div>
+          <?php endforeach; ?>
         </div>
 
         <div class="py-2"></div>
@@ -115,9 +102,9 @@
                         <h6><?=ucfirst($data_driver->nim)?></h6>
                         <h6><?php if($data_driver->lokasi_awal == "sekolah-bisnis"){echo "Sekolah Bisnis";}elseif($data_driver->lokasi_awal == "sekolah-vokasi"){echo "Sekolah Vokasi";}?></h6>
                         <?php if($data_driver->type == 'angle') { ?>
-                        <h6>Total Harga : Rp<?php $potongan=(20/100)*$data->harga; $totalharga=$data->harga-$potongan; echo number_format($totalharga)?></h6>
+                          <h6>Total Harga : Rp<?php $potongan=(20/100)*$data->harga; $totalharga=$data->harga-$potongan; echo number_format($totalharga)?></h6>
                         <?php } else { ?>
-                        <h6>Total Harga : Rp<?=number_format($data->harga)?></h6>
+                          <h6>Total Harga : Rp<?=number_format($data->harga)?></h6>
                         <?php } ?>
                       </label>
                     </div>

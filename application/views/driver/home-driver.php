@@ -2,24 +2,11 @@
         <h2 class="text-center">Selamat datang</h2>
         <p class="text-center text-muted">Dapatkan kemudahan pergi ke kampus bersama Goncengan</p>
         <div class="banner-slider">
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
+          <?php foreach ($banner as $data_banner) : ?>
+            <div class="banner-item">
+              <a href="javascript:;"><img src="https://admin.goncengan.com/assets/images/banner/<?=$data_banner->foto_banner?>" class="img-fluid rounded-3" alt=""></a>
+            </div>
+          <?php endforeach; ?>
         </div>
 
         <div class="py-2"></div>
@@ -99,7 +86,12 @@
                           <p>Sekarang kamu bisa berkomunikasi dengannya! Jangan lupa hargai dia yang telah memilihmu!</p>
                           <a href="https://wa.me/62<?=$data_pesanan->no_wa?>?text=Halo,%20<?=$data_pesanan->nama?>,%20saya%20<?=$data->nama?>." class="btn btn-ecomm rounded-3 btn-success flex-fill" target="_blank">Whatsapp</a>
                           <?php if($data_pesanan->is_payment == "0") { ?>
-                          <a href="<?=site_url('bayar-pesanan/'.$data->id)?>" class="btn btn-ecomm rounded-3 btn-primary flex-fill mt-3" id="bayar-pesanan">Bayar</a>
+                          <form action="<?=site_url('bayar-pesanan/'.$data->id)?>" method="post" class="p-0">
+                            <input type="hidden" name="harga" value="<?=$data_pesanan->harga?>">
+                            <input type="hidden" name="type" value="<?=$data->type?>">
+                            <button class="btn btn-ecomm rounded-3 btn-primary flex-fill mt-3" id="bayar-pesanan" style="width: 100% !important;">Bayar</button>
+                          </form>
+                          <!-- <a href="<?=site_url('bayar-pesanan/'.$data->id)?>" class="btn btn-ecomm rounded-3 btn-primary flex-fill mt-3" id="bayar-pesanan">Bayar</a> -->
                           <?php } else { ?>
                           <a href="<?=site_url('selesai-pesanan/'.$data->id)?>" class="btn btn-ecomm rounded-3 btn-primary flex-fill mt-3" id="selesai-pesanan">Selesai</a>
                           <?php } ?>

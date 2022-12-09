@@ -2,24 +2,11 @@
         <h2 class="text-center">Selamat datang</h2>
         <p class="text-center text-muted">Dapatkan kemudahan pergi ke kampus bersama Goncengan</p>
         <div class="banner-slider">
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
-          <div class="banner-item">
-            <a href="javascript:;"><img src="https://via.placeholder.com/1200X675" class="img-fluid rounded-3" alt=""></a>
-          </div>
+          <?php foreach ($banner as $data_banner) : ?>
+            <div class="banner-item">
+              <a href="javascript:;"><img src="https://admin.goncengan.com/assets/images/banner/<?=$data_banner->foto_banner?>" class="img-fluid rounded-3" alt=""></a>
+            </div>
+          <?php endforeach; ?>
         </div>
 
         <div class="py-2"></div>

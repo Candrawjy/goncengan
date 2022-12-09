@@ -4,15 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MainController extends CI_Controller {
 
 	public function __construct()
-    {
-        parent::__construct();
+	{
+		parent::__construct();
 
-        if ($this->session->userdata('email') == NULL) {
-            redirect('/');
-        }
+		if ($this->session->userdata('email') == NULL) {
+			redirect('/');
+		}
 
-        $this->load->model('Main_M');
-    }
+		$this->load->model('Main_M');
+	}
 
 	// public function index()
 	// {
@@ -41,6 +41,7 @@ class MainController extends CI_Controller {
 			redirect('penumpang');
 		} else {
 			$data['title'] = "Beranda";
+			$data['banner'] = $this->Main_M->getBanner()->result();
 
 			$this->load->view('partials/header', $data);
 			$this->load->view('partials/header-home');
@@ -90,28 +91,28 @@ class MainController extends CI_Controller {
 	}
 
 	public function kirimpesan()
-    {
-    	$id = substr(md5(rand()),0,5);
-        $id_user = $this->session->userdata('id');
-        $pesan = $this->input->post('pesan');
+	{
+		$id = substr(md5(rand()),0,5);
+		$id_user = $this->session->userdata('id');
+		$pesan = $this->input->post('pesan');
 
-        $data = array(
-        	'id' => $id,
-            'id_user'      => $id_user,
-            'pesan'  	=> $pesan,
-        );
- 
-        $this->Main_M->kirimpesan($data, 'pesan');
-        if ($this->db->affected_rows() > 0) {
-        	$this->session->set_flashdata('success', 'Pesan Anda berhasil dikirim');
-        	echo "<script> history.go(-1); </script>";
-        } else {
-        	$this->session->set_flashdata('success', 'Gagal untuk mengirim pesan, mohon coba lagi.');
-        	echo "<script> history.go(-1); </script>";
-        }
-    }
+		$data = array(
+			'id' => $id,
+			'id_user'      => $id_user,
+			'pesan'  	=> $pesan,
+		);
 
-    public function tentang_kami()
+		$this->Main_M->kirimpesan($data, 'pesan');
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Pesan Anda berhasil dikirim');
+			echo "<script> history.go(-1); </script>";
+		} else {
+			$this->session->set_flashdata('success', 'Gagal untuk mengirim pesan, mohon coba lagi.');
+			echo "<script> history.go(-1); </script>";
+		}
+	}
+
+	public function tentang_kami()
 	{
 		$data['title'] = "Tentang Kami";
 

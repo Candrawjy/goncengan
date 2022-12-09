@@ -18,6 +18,7 @@ class DriverController extends CI_Controller {
 		}
 
 		$this->load->model('Driver_M');
+		$this->load->model('Main_M');
 	}
 
 	public function mode_driver()
@@ -190,6 +191,7 @@ class DriverController extends CI_Controller {
 			$data['penawaran'] = $this->Driver_M->penawaran_home()->result();
 			$data['jml_penawaran_aktif'] = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->order_by('penawaran.created_at','DESC')->where('penawaran.id_user', $this->session->userdata('id'))->where('penawaran.is_active', '1')->where('penawaran.is_booked', '0')->limit(1, 'DESC')->get()->num_rows();
 			$data['jml_penawaran_aktif_booked'] = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->order_by('penawaran.created_at','DESC')->where('penawaran.id_user', $this->session->userdata('id'))->where('penawaran.is_active', '1')->where('penawaran.is_booked', '1')->limit(1, 'DESC')->get()->num_rows();
+			$data['banner'] = $this->Main_M->getBanner()->result();
 
 			$this->load->view('partials/header', $data);
 			$this->load->view('partials/header-home');
@@ -362,9 +364,34 @@ class DriverController extends CI_Controller {
 			'type' => $this->session->userdata('role')
 		];
 
+		$id_balance = substr(md5(rand()),0,5);
+		$harga = $this->input->post('harga');
+		$potongan = (25/100) * $harga;
+		$totalharga = $harga - $potongan;
+		if ($this->input->post('type') == "bisnis") {
+			$data_saldo = [
+				'id' => $id_balance,
+				'id_user' => $this->session->userdata('id'),
+				'balance_in' => $harga,
+				'balance_out' => "0",
+				'tax' => $potongan,
+				'total_balance' => $totalharga,
+			];
+		} else {
+			$data_saldo = [
+				'id' => $id_balance,
+				'id_user' => $this->session->userdata('id'),
+				'balance_in' => "0",
+				'balance_out' => "0",
+				'tax' => $harga,
+				'total_balance' => "0",
+			];
+		}
+
 		$this->Driver_M->selesai_pesanan($id, $data);
 		if ($this->db->affected_rows() > 0) {
 			$this->db->insert('notifikasi', $data_notifikasi);
+			$this->db->insert('balance', $data_saldo);
 			$this->session->set_flashdata('success', 'Transaksi telah dibayar! Silakan menyelesaikan transaksi kamu!');
 			redirect('driver');
 		} else {

@@ -4,7 +4,7 @@
           <?php 
             $where = "gender='$data->jenis_kelamin' OR gender='keduanya'";
             $jk = array($data->jenis_kelamin, 'keduanya');
-            $penawaran = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->where('penawaran.is_active', '1')->where('penawaran.is_booked', '0')->where('penawaran.type_waktu_penawaran', $data->type_waktu)->where('lokasi_awal', $data->lokasi_akhir)->like('lokasi_tujuan', $data->lokasi_user)->where_in('penawaran.gender', $jk)->order_by('penawaran.created_at','ASC')->get()->result(); ?>
+            $penawaran = $this->db->select('user.*, penawaran.*')->from('penawaran')->join('user', 'user.id = penawaran.id_user')->where('penawaran.is_active', '1')->where('penawaran.is_booked', '0')->where('penawaran.type_waktu_penawaran', $data->type_waktu)->where('lokasi_awal', $data->lokasi_akhir)->where_in('penawaran.gender', $jk)->order_by('penawaran.created_at','ASC')->get()->result(); ?>
           <?php foreach ($penawaran as $penawaran) : ?>
             <div class="card rounded-3 mb-3">
               <div class="card-body">
